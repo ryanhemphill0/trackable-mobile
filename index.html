@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trackable Mobile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+        }
+        
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            height: 100%;
+            background: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Safe area handling for iOS */
+        .safe-top {
+            height: env(safe-area-inset-top, 0px);
+            background: #FFFFFF;
+        }
+        
+        .safe-bottom {
+            height: env(safe-area-inset-bottom, 0px);
+            background: #FFFFFF;
+        }
+        
+        /* Screen Management */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #FFFFFF;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .screen.active {
+            display: flex;
+        }
+        
+        .screen.slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        
+        .screen.slide-out {
+            animation: slideOut 0.3s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
+        
+        /* Header Styles */
+        .header {
+            padding: 12px 20px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .back-btn {
+            color: #3B82F6;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .header-title {
+            font-size: 13px;
+            color: #6B7280;
+        }
+        
+        .header-workspace {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .header-action {
+            font-size: 24px;
+            cursor: pointer;
+            color: #6B7280;
+        }
+        
+        /* Screen Content */
+        .screen-content {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+        }
+        
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            padding: 16px 20px 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            padding: 0 20px 16px;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            margin: 0 20px 16px;
+            padding: 12px 16px;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #9CA3AF;
+            font-size: 16px;
+        }
+        
+        .search-bar svg {
+            width: 20px;
+            height: 20px;
+            color: #9CA3AF;
+        }
+        
+        /* Filter Chips */
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .chip {
+            padding: 10px 18px;
+            background: #F3F4F6;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chip:active {
+            transform: scale(0.95);
+        }
+        
+        .chip.active {
+            background: #3B82F6;
+            color: white;
+        }
+        
+        /* Section Header */
+        .section-header {
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #F9FAFB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-link {
+            color: #3B82F6;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        
+        /* Activity Card */
+        .activity-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid #F3F4F6;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .activity-card:active {
+            background: #F9FAFB;
+        }
+        
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .activity-type {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: #F3F4F6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .activity-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .activity-icon.missed {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+        
+        .activity-icon.call {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+        
+        .activity-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .activity-name {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        .activity-time {
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+        
+        .activity-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        /* Tags */
+        .tag {
+            padding: 5px 10px;
+            background: #F3F4F6;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .tag.needs-action {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        
+        .tag.scheduled {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+        
+        .tag.closed-won {
+            background: #D1FAE5;
+            color: #059669;
+        }
+        
+        /* Audio Player */
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #F9FAFB;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+        
+        .play-btn {
+            width: 32px;
+            height: 32px;
+            background: #111827;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .play-btn svg {
+            width: 12px;
+            height: 12px;
+            margin-left: 2px;
+        }
+        
+        .waveform {
+            flex: 1;
+            height: 28px;
+            background: linear-gradient(90deg, 
+                #CBD5E1 0%, #94A3B8 15%, #CBD5E1 20%, 
+                #94A3B8 35%, #64748B 50%, #94A3B8 65%,
+                #CBD5E1 80%, #94A3B8 90%, #CBD5E1 100%);
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+        
+        .duration {
+            font-size: 13px;
+            color: #6B7280;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        
+        /* Contact Card */
+        .contact-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .contact-card:active {
+            background: #F9FAFB;
+        }
+        
+        .avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            flex-shrink: 0;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .contact-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .contact-detail {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+        
+        .contact-arrow {
+            color: #D1D5DB;
+            font-size: 20px;
+        }
+        
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+        }
+        
+        .stat-card {
+            flex: 1;
+            background: #F9FAFB;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 10px 0 8px;
+            background: #FFFFFF;
+            border-top: 1px solid #E5E7EB;
+            flex-shrink: 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #9CA3AF;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 4px 16px;
+            transition: color 0.15s;
+        }
+        
+        .nav-item:active {
+            opacity: 0.7;
+        }
+        
+        .nav-item.active {
+            color: #3B82F6;
+        }
+        
+        .nav-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Detail Screen Styles */
+        .detail-header {
+            padding: 24px 20px;
+            text-align: center;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .detail-avatar {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: #374151;
+            margin: 0 auto 14px;
+        }
+        
+        .detail-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        
+        .detail-subtitle {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 18px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .action-btn {
+            padding: 12px 28px;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .action-btn:active {
+            background: #F9FAFB;
+            transform: scale(0.98);
+        }
+        
+        .action-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Info Section */
+        .info-section {
+            padding: 20px;
+        }
+        
+        .info-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .info-label {
+            font-size: 15px;
+            color: #6B7280;
+        }
+        
+        .info-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .info-value.lead {
+            color: #3B82F6;
+        }
+        
+        /* AI Summary */
+        .ai-summary {
+            margin: 16px 20px;
+            padding: 18px;
+            background: #F9FAFB;
+            border-radius: 14px;
+        }
+        
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .ai-badge {
+            background: #111827;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .ai-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .ai-content {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.6;
+        }
+        
+        .ai-summary.success {
+            background: #F0FDF4;
+        }
+        
+        .ai-summary.success .ai-badge {
+            background: #059669;
+        }
+        
+        /* Task Styles */
+        .task-section {
+            margin: 16px 20px;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        
+        .task-section-header {
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FAFAFA;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .task-section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-section-title.overdue { color: #DC2626; }
+        .task-section-title.today { color: #D97706; }
+        .task-section-title.upcoming { color: #059669; }
+        
+        .task-count {
+            background: #E5E7EB;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6B7280;
+        }
+        
+        .task-item {
+            padding: 14px 18px;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .task-item:active {
+            background: #F9FAFB;
+        }
+        
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #D1D5DB;
+            border-radius: 6px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .task-meta {
+            font-size: 13px;
+            color: #6B7280;
+        }
+        
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 16px 20px;
+        }
+        
+        .kpi-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 14px;
+            padding: 18px;
+        }
+        
+        .kpi-label {
+            font-size: 13px;
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+        
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111827;
+        }
+        
+        .kpi-change {
+            font-size: 13px;
+            color: #059669;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        
+        /* Funnel */
+        .funnel-section {
+            padding: 20px;
+        }
+        
+        .funnel-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 18px;
+        }
+        
+        .funnel-stage {
+            margin-bottom: 18px;
+        }
+        
+        .funnel-bar {
+            height: 10px;
+            background: #3B82F6;
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+        
+        .funnel-bar.stage-2 { width: 75%; background: #60A5FA; }
+        .funnel-bar.stage-3 { width: 63%; background: #93C5FD; }
+        .funnel-bar.stage-4 { width: 41%; background: #BFDBFE; }
+        
+        .funnel-label {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .funnel-name {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .funnel-value {
+            font-size: 14px;
+            color: #111827;
+            font-weight: 600;
+        }
+        
+        .funnel-cost {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        /* Workspace Picker Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #FFFFFF;
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            max-width: 430px;
+            max-height: 70vh;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .modal-close {
+            font-size: 28px;
+            color: #9CA3AF;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .workspace-list {
+            overflow-y: auto;
+            max-height: calc(70vh - 70px);
+        }
+        
+        .workspace-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #F3F4F6;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.15s;
+        }
+        
+        .workspace-item:active {
+            background: #F9FAFB;
+        }
+        
+        .workspace-item.active {
+            background: #EFF6FF;
+        }
+        
+        .workspace-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .workspace-check {
+            color: #3B82F6;
+            font-size: 20px;
+        }
+        
+        /* Primary Button */
+        .primary-btn {
+            background: #3B82F6;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .primary-btn:active {
+            transform: scale(0.98);
+            background: #2563EB;
+        }
+        
+        /* More Menu */
+        .more-menu {
+            padding: 20px;
+        }
+        
+        .menu-item {
+            padding: 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .menu-item:active {
+            background: #F9FAFB;
+            transform: scale(0.99);
+        }
+        
+        .menu-icon {
+            width: 44px;
+            height: 44px;
+            background: #F3F4F6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu-icon svg {
+            width: 22px;
+            height: 22px;
+            color: #374151;
+        }
+        
+        .menu-text {
+            flex: 1;
+        }
+        
+        .menu-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .menu-desc {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        .menu-arrow {
+            color: #D1D5DB;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Activities Screen -->
+        <div class="screen active" id="screen-activities">
+            <div class="header">
+                <div>
+                    <div class="header-title">Workspace</div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-action" onclick="navigateTo('settings')">
+                    <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Activities</div>
+                <div class="page-subtitle">4,696 items</div>
+                
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Search activities...
+                </div>
+                
+                <div class="filter-chips">
+                    <div class="chip active">All</div>
+                    <div class="chip">Missed Call</div>
+                    <div class="chip">Callback</div>
+                    <div class="chip">Voicemail</div>
+                    <div class="chip">Scheduled</div>
+                </div>
+                
+                <div class="section-header">Today</div>
+                
+                <div class="activity-card" onclick="navigateTo('activity-detail')">
+                    <div class="activity-header">
+                        <div class="activity-type">
+                            <div class="activity-icon call">
+                                <svg viewBox="0 0 256 256" fill="currentColor">
+                                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="activity-title">Inbound Call</div>
+                                <div class="activity-name">Laura Guffey</div>
+                            </div>
+                        </div>
+                        <div class="activity-time">4:07 PM</div>
+                    </div>
+                    <div class="activity-meta">
+                        <span class="tag scheduled">Appt Rescheduled</span>
+                    </div>
+                    <div class="audio-player" onclick="event.stopPropagation()">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="waveform"></div>
+                        <div class="duration">01:28</div>
+                    </div>
+                </div>
+                
+                <div class="activity-card" onclick="navigateTo('activity-detail-missed')">
+                    <div class="activity-header">
+                        <div class="activity-type">
+                            <div class="activity-icon missed">
+                                <svg viewBox="0 0 256 256" fill="currentColor">
+                                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="activity-title">Missed Call</div>
+                                <div class="activity-name">simpson linda</div>
+                            </div>
+                        </div>
+                        <div class="activity-time">9:04 AM</div>
+                    </div>
+                    <div class="activity-meta">
+                        <span class="tag needs-action">Needs Action</span>
+                        <span style="color: #6B7280; font-size: 13px;">(360) 480-9662</span>
+                    </div>
+                    <div class="audio-player" onclick="event.stopPropagation()">
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="waveform"></div>
+                        <div class="duration">00:16</div>
+                    </div>
+                </div>
+                
+                <div class="section-header">Yesterday</div>
+                
+                <div class="activity-card" onclick="navigateTo('activity-detail')">
+                    <div class="activity-header">
+                        <div class="activity-type">
+                            <div class="activity-icon call">
+                                <svg viewBox="0 0 256 256" fill="currentColor">
+                                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="activity-title">Inbound Call</div>
+                                <div class="activity-name">+1 Contact</div>
+                            </div>
+                        </div>
+                        <div class="activity-time">6:00 PM</div>
+                    </div>
+                    <div class="activity-meta">
+                        <span class="tag closed-won">Scheduled</span>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <div class="activity-type">
+                            <div class="activity-icon call">
+                                <svg viewBox="0 0 256 256" fill="currentColor">
+                                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="activity-title">Outbound Call</div>
+                                <div class="activity-name">Jennifer Martinez</div>
+                            </div>
+                        </div>
+                        <div class="activity-time">3:45 PM</div>
+                    </div>
+                    <div class="activity-meta">
+                        <span class="tag closed-won">Closed Won</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Detail Screen -->
+        <div class="screen" id="screen-activity-detail">
+            <div class="header">
+                <div class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </div>
+                <div class="header-action">•••</div>
+            </div>
+            
+            <div class="screen-content">
+                <div style="padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+                        <div class="activity-icon call" style="width: 48px; height: 48px;">
+                            <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div style="font-size: 20px; font-weight: 600; color: #111827;">Inbound Call</div>
+                            <div style="font-size: 15px; color: #6B7280;">Today at 4:07 PM</div>
+                        </div>
+                    </div>
+                    <span class="tag scheduled">Appointment Rescheduled</span>
+                    
+                    <div class="audio-player" style="margin: 20px 0;">
+                        <div class="play-btn" style="width: 40px; height: 40px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="waveform"></div>
+                        <div class="duration">00:00 / 01:28</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 0; border-bottom: 1px solid #E5E7EB;">
+                        <div style="padding: 14px 18px; border-bottom: 2px solid #3B82F6; font-weight: 600; color: #3B82F6; font-size: 15px;">Summary</div>
+                        <div style="padding: 14px 18px; color: #6B7280; font-size: 15px;">Transcript</div>
+                        <div style="padding: 14px 18px; color: #6B7280; font-size: 15px;">Details</div>
+                    </div>
+                </div>
+                
+                <div class="ai-summary">
+                    <div class="ai-header">
+                        <span class="ai-badge">A.I.</span>
+                        <span class="ai-label">Summary</span>
+                    </div>
+                    <div class="ai-content">
+                        Laura Guffey called to reschedule her previously scheduled appointment on February 3, 2026. She successfully rescheduled it to February 5, 2026, at 12:30 pm.
+                    </div>
+                </div>
+                
+                <div class="ai-summary success">
+                    <div class="ai-header">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        <span class="ai-label">Action Items</span>
+                    </div>
+                    <div class="ai-content">
+                        No further action is required as the appointment has been successfully rescheduled.
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Identified Contact</div>
+                    <div class="contact-card" style="padding: 14px; border: 1px solid #E5E7EB; border-radius: 14px; margin: 0;" onclick="navigateTo('contact-detail')">
+                        <div class="avatar">L</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Laura Guffey</div>
+                            <div class="contact-detail" style="margin-bottom: 8px;">Current Patient • (360) 880-5661</div>
+                            <span class="tag closed-won">Closed Won</span>
+                        </div>
+                        <span class="contact-arrow">›</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts Screen -->
+        <div class="screen" id="screen-contacts">
+            <div class="header">
+                <div>
+                    <div class="header-title">Workspace</div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace-contacts">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-action">
+                    <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Contacts</div>
+                
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Search contacts...
+                </div>
+                
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value">45</div>
+                        <div class="stat-label">Active Leads</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">36</div>
+                        <div class="stat-label">Scheduled</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">64</div>
+                        <div class="stat-label">Closed Lost</div>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    Active Leads
+                    <span class="section-link">See All →</span>
+                </div>
+                
+                <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
+                    <div class="avatar">S</div>
+                    <div class="contact-info">
+                        <div class="contact-name">simpson linda</div>
+                        <div class="contact-detail">📵 Missed Call • Today</div>
+                        <span class="tag needs-action">Needs Action</span>
+                    </div>
+                    <span class="contact-arrow">›</span>
+                </div>
+                
+                <div class="contact-card" onclick="navigateTo('contact-detail')">
+                    <div class="avatar">A</div>
+                    <div class="contact-info">
+                        <div class="contact-name">applevalleydent</div>
+                        <div class="contact-detail">📞 Digital Marketing • Today</div>
+                        <span class="tag needs-action">Needs Action</span>
+                    </div>
+                    <span class="contact-arrow">›</span>
+                </div>
+                
+                <div class="contact-card" onclick="navigateTo('contact-detail')">
+                    <div class="avatar">R</div>
+                    <div class="contact-info">
+                        <div class="contact-name">ross thomas</div>
+                        <div class="contact-detail">📞 Digital Marketing • 2 days ago</div>
+                        <span class="tag needs-action">Needs Action</span>
+                    </div>
+                    <span class="contact-arrow">›</span>
+                </div>
+                
+                <div class="contact-card" onclick="navigateTo('contact-detail')">
+                    <div class="avatar">A</div>
+                    <div class="contact-info">
+                        <div class="contact-name">andrea</div>
+                        <div class="contact-detail">👤 Assigned to Ange • 4 days ago</div>
+                        <span class="tag needs-action">Needs Action</span>
+                    </div>
+                    <span class="contact-arrow">›</span>
+                </div>
+                
+                <div class="section-header">
+                    Recently Scheduled
+                    <span class="section-link">See All →</span>
+                </div>
+                
+                <div class="contact-card" onclick="navigateTo('contact-detail')">
+                    <div class="avatar">L</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Laura Guffey</div>
+                        <div class="contact-detail">📅 Feb 5 at 12:30 PM</div>
+                        <span class="tag scheduled">Scheduled</span>
+                    </div>
+                    <span class="contact-arrow">›</span>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item active" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Detail Screen -->
+        <div class="screen" id="screen-contact-detail-simpson">
+            <div class="header">
+                <div class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </div>
+                <div class="header-action">•••</div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="detail-header">
+                    <div class="detail-avatar">S</div>
+                    <div class="detail-name">Simpson Linda</div>
+                    <div class="detail-subtitle">Lead • Needs Action</div>
+                    <div class="action-buttons">
+                        <div class="action-btn">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                            </svg>
+                            Call
+                        </div>
+                        <div class="action-btn">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87a15.86,15.86,0,0,0,14.44,9.13q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85,114.32,142.4l46.47-46.47a8,8,0,0,0-11.32-11.32L103.6,131.08,24.15,87.57,216,32Z"/>
+                            </svg>
+                            Text
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Contact Info</div>
+                    <div class="info-row">
+                        <span class="info-label">Cell Phone</span>
+                        <span class="info-value">(360) 480-9662</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Channel</span>
+                        <span class="info-value">Digital Marketing</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Status</div>
+                    <div class="info-row">
+                        <span class="info-label">Lifecycle</span>
+                        <span class="info-value lead">Lead</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Lead Status</span>
+                        <span class="info-value"><span class="tag needs-action">Needs Action</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Lead Owner</span>
+                        <span class="info-value" style="color: #3B82F6;">Select Owner →</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Became Lead</span>
+                        <span class="info-value">Jan 30, 2026</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Tags</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span class="tag">Missed Call</span>
+                        <span style="color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer;">+ Add Tag</span>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Recent Activity</div>
+                    <div class="activity-card" style="padding: 14px; border: 1px solid #E5E7EB; border-radius: 14px; margin: 0;" onclick="navigateTo('activity-detail-missed')">
+                        <div class="activity-header" style="margin-bottom: 0;">
+                            <div class="activity-type">
+                                <div class="activity-icon missed">
+                                    <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                                        <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="activity-title" style="font-size: 15px;">Missed Call</div>
+                                    <div style="font-size: 13px; color: #6B7280;">Today at 9:04 AM</div>
+                                </div>
+                            </div>
+                            <span class="contact-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item active" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Screen -->
+        <div class="screen" id="screen-tasks">
+            <div class="header">
+                <div>
+                    <div class="header-title">Workspace</div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace-tasks">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="primary-btn">+ New</div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Tasks</div>
+                
+                <div class="filter-chips">
+                    <div class="chip active">Open Tasks</div>
+                    <div class="chip">My Tasks</div>
+                    <div class="chip">Completed</div>
+                </div>
+                
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <span class="task-section-title overdue">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#DC2626">
+                                <circle cx="12" cy="12" r="12"/>
+                            </svg>
+                            Overdue
+                        </span>
+                        <span class="task-count">2</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Follow up with ross thomas</div>
+                            <div class="task-meta">Due: Jan 28 (2 days ago) • Unassigned</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Call back andrea</div>
+                            <div class="task-meta">Due: Jan 27 (3 days ago) • Ange</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <span class="task-section-title today">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#D97706">
+                                <circle cx="12" cy="12" r="12"/>
+                            </svg>
+                            Today
+                        </span>
+                        <span class="task-count">2</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Confirm appointment - Laura Guffey</div>
+                            <div class="task-meta">Feb 5 appointment • Martha</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Return call - simpson linda</div>
+                            <div class="task-meta">Missed call this morning • Unassigned</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <span class="task-section-title upcoming">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#059669">
+                                <circle cx="12" cy="12" r="12"/>
+                            </svg>
+                            Upcoming
+                        </span>
+                        <span class="task-count">3</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Follow up - new patient inquiry</div>
+                            <div class="task-meta">Due: Feb 1 • Carla</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Send insurance verification request</div>
+                            <div class="task-meta">Due: Feb 2 • Martha</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Review monthly marketing report</div>
+                            <div class="task-meta">Due: Feb 3 • Ryan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item active" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- More Screen -->
+        <div class="screen" id="screen-more">
+            <div class="header">
+                <div>
+                    <div class="header-title">Workspace</div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace-more">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-action">
+                    <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">More</div>
+                
+                <div class="more-menu">
+                    <div class="menu-item" onclick="navigateTo('analytics')">
+                        <div class="menu-icon">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z"/>
+                            </svg>
+                        </div>
+                        <div class="menu-text">
+                            <div class="menu-title">Marketing Analytics</div>
+                            <div class="menu-desc">ROI, funnel, and campaign performance</div>
+                        </div>
+                        <span class="menu-arrow">›</span>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Zm16,72a8,8,0,0,1-8,8H72a8,8,0,0,1,0-16H184A8,8,0,0,1,192,160Z"/>
+                            </svg>
+                        </div>
+                        <div class="menu-text">
+                            <div class="menu-title">Companies</div>
+                            <div class="menu-desc">Manage locations and practices</div>
+                        </div>
+                        <span class="menu-arrow">›</span>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Z"/>
+                            </svg>
+                        </div>
+                        <div class="menu-text">
+                            <div class="menu-title">Settings</div>
+                            <div class="menu-desc">Profile, users, integrations</div>
+                        </div>
+                        <span class="menu-arrow">›</span>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <svg viewBox="0 0 256 256" fill="currentColor">
+                                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/>
+                            </svg>
+                        </div>
+                        <div class="menu-text">
+                            <div class="menu-title">Sign Out</div>
+                            <div class="menu-desc">ryanhemphill0@gmail.com</div>
+                        </div>
+                        <span class="menu-arrow">›</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item active" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Screen -->
+        <div class="screen" id="screen-analytics">
+            <div class="header">
+                <div class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </div>
+                <div style="font-size: 15px; color: #6B7280; display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                    Jan 2026
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Marketing</div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">Budget</div>
+                        <div class="kpi-value">$7,600</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Net Production</div>
+                        <div class="kpi-value">$20,769</div>
+                        <div class="kpi-change">↑ 181%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Scheduled Prod</div>
+                        <div class="kpi-value">$6,503</div>
+                        <div class="kpi-change">↑ 899%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">ROI</div>
+                        <div class="kpi-value">259%</div>
+                    </div>
+                </div>
+                
+                <div class="funnel-section">
+                    <div class="funnel-title">Conversion Funnel</div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar" style="width: 100%;"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Leads</span>
+                            <span class="funnel-value">103</span>
+                        </div>
+                        <div class="funnel-cost">$73.79 CPL</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-2"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Qualified Leads</span>
+                            <span class="funnel-value">77</span>
+                        </div>
+                        <div class="funnel-cost">$98.70 CPQL</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-3"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Appointments Scheduled</span>
+                            <span class="funnel-value">65</span>
+                        </div>
+                        <div class="funnel-cost">$116.92 CPA</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-4"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">New Patients</span>
+                            <span class="funnel-value">42</span>
+                        </div>
+                        <div class="funnel-cost">$180.95 CAC</div>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-title">Lead Status Breakdown</div>
+                    <div class="info-row">
+                        <span class="info-label">Closed Won</span>
+                        <span class="info-value">42</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Needs Action</span>
+                        <span class="info-value">38</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Scheduled</span>
+                        <span class="info-value">20</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Closed Lost</span>
+                        <span class="info-value">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
+                        </svg>
+                    </div>
+                    Activity
+                </div>
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item active" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Workspace Picker Modal -->
+        <div class="modal-overlay" id="workspace-modal" onclick="closeWorkspacePicker(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <div class="modal-title">Switch Workspace</div>
+                    <div class="modal-close" onclick="closeWorkspacePicker()">&times;</div>
+                </div>
+                <div class="workspace-list">
+                    <div class="workspace-item active" onclick="selectWorkspace('Affordable Family Dental')">
+                        <span class="workspace-name">Affordable Family Dental</span>
+                        <span class="workspace-check">✓</span>
+                    </div>
+                    <div class="workspace-item" onclick="selectWorkspace('Bright Smiles Orthodontics')">
+                        <span class="workspace-name">Bright Smiles Orthodontics</span>
+                        <span class="workspace-check"></span>
+                    </div>
+                    <div class="workspace-item" onclick="selectWorkspace('City Center Dental Group')">
+                        <span class="workspace-name">City Center Dental Group</span>
+                        <span class="workspace-check"></span>
+                    </div>
+                    <div class="workspace-item" onclick="selectWorkspace('Family First Dentistry')">
+                        <span class="workspace-name">Family First Dentistry</span>
+                        <span class="workspace-check"></span>
+                    </div>
+                    <div class="workspace-item" onclick="selectWorkspace('Gentle Care Pediatric')">
+                        <span class="workspace-name">Gentle Care Pediatric</span>
+                        <span class="workspace-check"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation state
+        let currentScreen = 'activities';
+        let screenHistory = [];
+        let currentWorkspace = 'Affordable Family Dental';
+
+        // Tab switching
+        function switchTab(tab) {
+            // Clear history when switching main tabs
+            screenHistory = [];
+            
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            
+            // Show target screen
+            document.getElementById('screen-' + tab).classList.add('active');
+            currentScreen = tab;
+            
+            // Update nav active states
+            updateNavActive(tab);
+        }
+
+        // Navigate to a detail screen
+        function navigateTo(screen) {
+            screenHistory.push(currentScreen);
+            
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            
+            const targetScreen = document.getElementById('screen-' + screen);
+            targetScreen.classList.add('active', 'slide-in');
+            
+            setTimeout(() => {
+                targetScreen.classList.remove('slide-in');
+            }, 300);
+            
+            currentScreen = screen;
+        }
+
+        // Go back
+        function goBack() {
+            if (screenHistory.length > 0) {
+                const prevScreen = screenHistory.pop();
+                
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById('screen-' + prevScreen).classList.add('active');
+                
+                currentScreen = prevScreen;
+                updateNavActive(prevScreen);
+            }
+        }
+
+        // Update nav active states
+        function updateNavActive(tab) {
+            // Map screen names to nav tabs
+            const tabMap = {
+                'activities': 'activities',
+                'activity-detail': 'activities',
+                'activity-detail-missed': 'activities',
+                'contacts': 'contacts',
+                'contact-detail': 'contacts',
+                'contact-detail-simpson': 'contacts',
+                'tasks': 'tasks',
+                'more': 'more',
+                'analytics': 'more',
+                'settings': 'more'
+            };
+            
+            const activeTab = tabMap[tab] || tab;
+            
+            document.querySelectorAll('.bottom-nav').forEach(nav => {
+                nav.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                const items = nav.querySelectorAll('.nav-item');
+                switch(activeTab) {
+                    case 'activities': items[0].classList.add('active'); break;
+                    case 'contacts': items[1].classList.add('active'); break;
+                    case 'tasks': items[2].classList.add('active'); break;
+                    case 'more': items[3].classList.add('active'); break;
+                }
+            });
+        }
+
+        // Workspace picker
+        function openWorkspacePicker() {
+            document.getElementById('workspace-modal').classList.add('active');
+        }
+
+        function closeWorkspacePicker(event) {
+            if (!event || event.target.id === 'workspace-modal') {
+                document.getElementById('workspace-modal').classList.remove('active');
+            }
+        }
+
+        function selectWorkspace(name) {
+            currentWorkspace = name;
+            
+            // Update all workspace labels
+            document.querySelectorAll('[id^="current-workspace"]').forEach(el => {
+                el.textContent = name;
+            });
+            
+            // Update active state in modal
+            document.querySelectorAll('.workspace-item').forEach(item => {
+                const itemName = item.querySelector('.workspace-name').textContent;
+                const check = item.querySelector('.workspace-check');
+                if (itemName === name) {
+                    item.classList.add('active');
+                    check.textContent = '✓';
+                } else {
+                    item.classList.remove('active');
+                    check.textContent = '';
+                }
+            });
+            
+            closeWorkspacePicker();
+        }
+
+        // Filter chip clicks
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

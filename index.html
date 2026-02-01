@@ -149,11 +149,12 @@
         /* View Tabs */
         .view-tabs {
             display: flex;
-            padding: 12px 20px;
-            gap: 10px;
+            padding: 0 20px;
+            gap: 0;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            border-bottom: 1px solid #E5E7EB;
         }
         
         .view-tabs::-webkit-scrollbar {
@@ -161,25 +162,29 @@
         }
         
         .view-tab {
-            padding: 8px 14px;
+            padding: 14px 16px;
             font-size: 14px;
             font-weight: 500;
             color: #6B7280;
             cursor: pointer;
-            border-radius: 18px;
+            border-radius: 0;
             white-space: nowrap;
             flex-shrink: 0;
             transition: all 0.15s;
             background: transparent;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
         }
         
         .view-tab:active {
-            transform: scale(0.97);
+            opacity: 0.7;
         }
         
         .view-tab.active {
-            background: #111827;
-            color: #FFFFFF;
+            background: transparent;
+            color: #111827;
+            border-bottom: 2px solid #111827;
+            font-weight: 600;
         }
         
         .view-tab-add {

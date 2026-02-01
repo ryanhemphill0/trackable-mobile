@@ -1054,8 +1054,6 @@
                     <div class="chip">Scheduled</div>
                 </div>
                 
-                <div class="section-header">Today</div>
-                
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
                         <div class="activity-type">
@@ -1114,8 +1112,6 @@
                         <div class="duration">00:16</div>
                     </div>
                 </div>
-                
-                <div class="section-header">Yesterday</div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
@@ -1335,6 +1331,7 @@
             
             <div class="screen-content">
                 <div class="page-title">Contacts</div>
+                <div class="page-subtitle">145 contacts</div>
                 
                 <div class="search-bar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1344,24 +1341,12 @@
                     Search contacts...
                 </div>
                 
-                <div class="stats-row">
-                    <div class="stat-card">
-                        <div class="stat-value">45</div>
-                        <div class="stat-label">Active Leads</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">36</div>
-                        <div class="stat-label">Scheduled</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">64</div>
-                        <div class="stat-label">Closed Lost</div>
-                    </div>
-                </div>
-                
-                <div class="section-header">
-                    Active Leads
-                    <span class="section-link">See All →</span>
+                <div class="filter-chips">
+                    <div class="chip active">All</div>
+                    <div class="chip">Active Leads</div>
+                    <div class="chip">Scheduled</div>
+                    <div class="chip">Closed Lost</div>
+                    <div class="chip">Needs Action</div>
                 </div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
@@ -1402,11 +1387,6 @@
                         <span class="tag needs-action">Needs Action</span>
                     </div>
                     <span class="contact-arrow">›</span>
-                </div>
-                
-                <div class="section-header">
-                    Recently Scheduled
-                    <span class="section-link">See All →</span>
                 </div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">

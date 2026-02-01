@@ -149,8 +149,8 @@
         /* View Tabs */
         .view-tabs {
             display: flex;
-            padding: 4px 16px;
-            gap: 8px;
+            padding: 12px 20px;
+            gap: 10px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -161,15 +161,16 @@
         }
         
         .view-tab {
-            padding: 10px 16px;
+            padding: 8px 14px;
             font-size: 14px;
             font-weight: 500;
             color: #6B7280;
             cursor: pointer;
-            border-radius: 20px;
+            border-radius: 18px;
             white-space: nowrap;
             flex-shrink: 0;
             transition: all 0.15s;
+            background: transparent;
         }
         
         .view-tab:active {
@@ -177,17 +178,11 @@
         }
         
         .view-tab.active {
-            background: #111827;
-            color: #FFFFFF;
+            background: #F3F4F6;
+            color: #374151;
         }
         
         .view-tab-add {
-            color: #9CA3AF;
-            border: 1px dashed #D1D5DB;
-        }
-        
-        .view-tab-add.active {
-            background: transparent;
             color: #9CA3AF;
         }
         

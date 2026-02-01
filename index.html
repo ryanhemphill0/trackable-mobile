@@ -1290,7 +1290,6 @@
                 </div>
                 
                 <div id="activities-list-container">
-                <div class="date-group">Today</div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
@@ -1357,7 +1356,6 @@
                     </div>
                 </div>
                 
-                <div class="date-group">Yesterday</div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
@@ -2481,7 +2479,6 @@
             // Build HTML
             let html = '';
             data.groups.forEach(group => {
-                html += `<div class="date-group">${group.label}</div>`;
                 group.contacts.forEach(contact => {
                     const tagHtml = contact.tag 
                         ? `<div class="contact-meta"><span class="tag ${contact.tagType || ''}">${contact.tag}</span></div>` 
@@ -2577,7 +2574,7 @@
                 return;
             }
             
-            let html = `<div class="date-group">Search Results</div>`;
+            let html = '';
             results.forEach(contact => {
                 const tagHtml = contact.tag 
                     ? `<div class="contact-meta"><span class="tag ${contact.tagType || ''}">${contact.tag}</span></div>` 
@@ -2687,7 +2684,6 @@
                 return;
             }
             
-            let html = `<div class="date-group">Search Results</div>`;
             results.forEach(activity => {
                 const iconClass = activity.type === 'Missed Call' ? 'missed' : 'call';
                 const phoneHtml = activity.phone ? `<span style="color: #6B7280; font-size: 13px;">${activity.phone}</span>` : '';

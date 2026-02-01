@@ -511,6 +511,18 @@
             flex-shrink: 0;
         }
         
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .contact-type {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
         .contact-info {
             flex: 1;
             min-width: 0;
@@ -520,29 +532,24 @@
             font-size: 16px;
             font-weight: 600;
             color: #111827;
-            margin-bottom: 2px;
         }
         
         .contact-lifecycle {
-            font-size: 13px;
+            font-size: 14px;
             color: #6B7280;
-            margin-bottom: 6px;
+            margin-top: 2px;
         }
         
-        .contact-tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 500;
-            color: #DC2626;
-            background: #FEF2F2;
-            padding: 3px 8px;
-            border-radius: 4px;
+        .contact-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
         }
         
         .contact-arrow {
             color: #D1D5DB;
             font-size: 20px;
-            align-self: center;
         }
         
         /* Stats Row */
@@ -1483,55 +1490,81 @@
                 <div class="date-group">Today</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
-                    <div class="avatar">S</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Simpson Linda</div>
-                        <div class="contact-lifecycle">Lead</div>
-                        <span class="contact-tag">Missed Call</span>
+                    <div class="contact-header">
+                        <div class="contact-type">
+                            <div class="avatar">S</div>
+                            <div>
+                                <div class="contact-name">Simpson Linda</div>
+                                <div class="contact-lifecycle">Lead</div>
+                            </div>
+                        </div>
+                        <span class="contact-arrow">›</span>
                     </div>
-                    <span class="contact-arrow">›</span>
+                    <div class="contact-meta">
+                        <span class="tag needs-action">Missed Call</span>
+                    </div>
                 </div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="avatar">A</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Apple Valley Dental</div>
-                        <div class="contact-lifecycle">Qualified Lead</div>
-                        <span class="contact-tag">Appt Not Scheduled</span>
+                    <div class="contact-header">
+                        <div class="contact-type">
+                            <div class="avatar">A</div>
+                            <div>
+                                <div class="contact-name">Apple Valley Dental</div>
+                                <div class="contact-lifecycle">Qualified Lead</div>
+                            </div>
+                        </div>
+                        <span class="contact-arrow">›</span>
                     </div>
-                    <span class="contact-arrow">›</span>
+                    <div class="contact-meta">
+                        <span class="tag needs-action">Appt Not Scheduled</span>
+                    </div>
                 </div>
                 
                 <div class="date-group">Yesterday</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="avatar">R</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Ross Thomas</div>
-                        <div class="contact-lifecycle">New Patient Scheduled</div>
+                    <div class="contact-header">
+                        <div class="contact-type">
+                            <div class="avatar">R</div>
+                            <div>
+                                <div class="contact-name">Ross Thomas</div>
+                                <div class="contact-lifecycle">New Patient Scheduled</div>
+                            </div>
+                        </div>
+                        <span class="contact-arrow">›</span>
                     </div>
-                    <span class="contact-arrow">›</span>
                 </div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="avatar">A</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Andrea Martinez</div>
-                        <div class="contact-lifecycle">Lead</div>
-                        <span class="contact-tag">No Response</span>
+                    <div class="contact-header">
+                        <div class="contact-type">
+                            <div class="avatar">A</div>
+                            <div>
+                                <div class="contact-name">Andrea Martinez</div>
+                                <div class="contact-lifecycle">Lead</div>
+                            </div>
+                        </div>
+                        <span class="contact-arrow">›</span>
                     </div>
-                    <span class="contact-arrow">›</span>
+                    <div class="contact-meta">
+                        <span class="tag needs-action">No Response</span>
+                    </div>
                 </div>
                 
                 <div class="date-group">This week</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="avatar">L</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Laura Guffey</div>
-                        <div class="contact-lifecycle">Patient</div>
+                    <div class="contact-header">
+                        <div class="contact-type">
+                            <div class="avatar">L</div>
+                            <div>
+                                <div class="contact-name">Laura Guffey</div>
+                                <div class="contact-lifecycle">Patient</div>
+                            </div>
+                        </div>
+                        <span class="contact-arrow">›</span>
                     </div>
-                    <span class="contact-arrow">›</span>
                 </div>
             </div>
             

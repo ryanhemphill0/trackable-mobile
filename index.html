@@ -520,18 +520,29 @@
             font-size: 16px;
             font-weight: 600;
             color: #111827;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         
-        .contact-detail {
-            font-size: 14px;
+        .contact-lifecycle {
+            font-size: 13px;
             color: #6B7280;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .contact-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #DC2626;
+            background: #FEF2F2;
+            padding: 3px 8px;
+            border-radius: 4px;
         }
         
         .contact-arrow {
             color: #D1D5DB;
             font-size: 20px;
+            align-self: center;
         }
         
         /* Stats Row */
@@ -1474,9 +1485,9 @@
                 <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
                     <div class="avatar">S</div>
                     <div class="contact-info">
-                        <div class="contact-name">simpson linda</div>
-                        <div class="contact-detail">📵 Missed Call • Today</div>
-                        <span class="tag needs-action">Needs Action</span>
+                        <div class="contact-name">Simpson Linda</div>
+                        <div class="contact-lifecycle">Lead</div>
+                        <span class="contact-tag">Missed Call</span>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -1484,8 +1495,9 @@
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
                     <div class="avatar">A</div>
                     <div class="contact-info">
-                        <div class="contact-name">applevalleydent</div>
-                        <div class="contact-detail">Digital Marketing</div>
+                        <div class="contact-name">Apple Valley Dental</div>
+                        <div class="contact-lifecycle">Qualified Lead</div>
+                        <span class="contact-tag">Appt Not Scheduled</span>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -1495,8 +1507,8 @@
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
                     <div class="avatar">R</div>
                     <div class="contact-info">
-                        <div class="contact-name">ross thomas</div>
-                        <div class="contact-detail">Digital Marketing</div>
+                        <div class="contact-name">Ross Thomas</div>
+                        <div class="contact-lifecycle">New Patient Scheduled</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -1504,8 +1516,9 @@
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
                     <div class="avatar">A</div>
                     <div class="contact-info">
-                        <div class="contact-name">andrea</div>
-                        <div class="contact-detail">Referral</div>
+                        <div class="contact-name">Andrea Martinez</div>
+                        <div class="contact-lifecycle">Lead</div>
+                        <span class="contact-tag">No Response</span>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -1516,7 +1529,7 @@
                     <div class="avatar">L</div>
                     <div class="contact-info">
                         <div class="contact-name">Laura Guffey</div>
-                        <div class="contact-detail">Current Patient</div>
+                        <div class="contact-lifecycle">Patient</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>

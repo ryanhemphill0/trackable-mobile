@@ -1485,72 +1485,8 @@
                     </span>
                 </div>
                 
-                <div class="date-group">Today</div>
-                
-                <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
-                    <div class="contact-header">
-                        <div class="contact-type">
-                            <div class="avatar">S</div>
-                            <div>
-                                <div class="contact-name">Simpson Linda</div>
-                                <div class="contact-lifecycle">Lead</div>
-                            </div>
-                        </div>
-                        <span class="contact-arrow">›</span>
-                    </div>
-                    <div class="contact-meta">
-                        <span class="tag needs-action">Missed Call</span>
-                    </div>
-                </div>
-                
-                <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="contact-header">
-                        <div class="contact-type">
-                            <div class="avatar">A</div>
-                            <div>
-                                <div class="contact-name">Apple Valley Dental</div>
-                                <div class="contact-lifecycle">Qualified Lead</div>
-                            </div>
-                        </div>
-                        <span class="contact-arrow">›</span>
-                    </div>
-                    <div class="contact-meta">
-                        <span class="tag needs-action">Appt Not Scheduled</span>
-                    </div>
-                </div>
-                
-                <div class="date-group">Yesterday</div>
-                
-                <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="contact-header">
-                        <div class="contact-type">
-                            <div class="avatar">R</div>
-                            <div>
-                                <div class="contact-name">Ross Thomas</div>
-                                <div class="contact-lifecycle">Lead</div>
-                            </div>
-                        </div>
-                        <span class="contact-arrow">›</span>
-                    </div>
-                    <div class="contact-meta">
-                        <span class="tag needs-action">New Form</span>
-                    </div>
-                </div>
-                
-                <div class="contact-card" onclick="navigateTo('contact-detail')">
-                    <div class="contact-header">
-                        <div class="contact-type">
-                            <div class="avatar">A</div>
-                            <div>
-                                <div class="contact-name">Andrea Martinez</div>
-                                <div class="contact-lifecycle">New Patient Scheduled</div>
-                            </div>
-                        </div>
-                        <span class="contact-arrow">›</span>
-                    </div>
-                    <div class="contact-meta">
-                        <span class="tag needs-action">Broken Appointment</span>
-                    </div>
+                <div id="contacts-list-container">
+                    <!-- Dynamically populated -->
                 </div>
             </div>
             
@@ -2316,22 +2252,159 @@
             closeWorkspacePicker();
         }
 
-        // View tab selection
+        // Contact data for each view
+        const contactsData = {
+            'All contacts': {
+                count: 145,
+                groups: [
+                    {
+                        label: 'Today',
+                        contacts: [
+                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson' },
+                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'Patient', tag: null, detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'Yesterday',
+                        contacts: [
+                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'M', name: 'Mike Johnson', lifecycle: 'Patient', tag: null, detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'This week',
+                        contacts: [
+                            { initial: 'J', name: 'Jennifer Wilson', lifecycle: 'Patient', tag: null, detail: 'contact-detail' },
+                            { initial: 'D', name: 'David Chen', lifecycle: 'Lead', tag: null, detail: 'contact-detail' },
+                            { initial: 'S', name: 'Sarah Brown', lifecycle: 'Qualified Lead', tag: null, detail: 'contact-detail' }
+                        ]
+                    }
+                ]
+            },
+            'Active Leads': {
+                count: 45,
+                groups: [
+                    {
+                        label: 'Today',
+                        contacts: [
+                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson' },
+                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'Yesterday',
+                        contacts: [
+                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'This week',
+                        contacts: [
+                            { initial: 'K', name: 'Karen White', lifecycle: 'Lead', tag: 'Needs Follow-up', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'T', name: 'Tom Garcia', lifecycle: 'Qualified Lead', tag: 'Callback Requested', tagType: 'needs-action', detail: 'contact-detail' },
+                            { initial: 'N', name: 'Nancy Davis', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' }
+                        ]
+                    }
+                ]
+            },
+            'Scheduled': {
+                count: 36,
+                groups: [
+                    {
+                        label: 'Tomorrow',
+                        contacts: [
+                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 12:30 PM', tagType: 'scheduled', detail: 'contact-detail' },
+                            { initial: 'J', name: 'James Miller', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 2:00 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'This week',
+                        contacts: [
+                            { initial: 'E', name: 'Emily Rodriguez', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 9:00 AM', tagType: 'scheduled', detail: 'contact-detail' },
+                            { initial: 'C', name: 'Chris Anderson', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 11:30 AM', tagType: 'scheduled', detail: 'contact-detail' },
+                            { initial: 'P', name: 'Patricia Lee', lifecycle: 'New Patient Scheduled', tag: 'Feb 7 @ 3:00 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                        ]
+                    },
+                    {
+                        label: 'Next week',
+                        contacts: [
+                            { initial: 'R', name: 'Robert Taylor', lifecycle: 'New Patient Scheduled', tag: 'Feb 10 @ 10:00 AM', tagType: 'scheduled', detail: 'contact-detail' },
+                            { initial: 'M', name: 'Maria Hernandez', lifecycle: 'New Patient Scheduled', tag: 'Feb 11 @ 1:30 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Render contacts for the selected view
+        function renderContacts(viewName) {
+            const container = document.getElementById('contacts-list-container');
+            const data = contactsData[viewName];
+            
+            if (!data || !container) return;
+            
+            // Update count
+            const countsEl = document.getElementById('contacts-results-count');
+            if (countsEl) countsEl.textContent = data.count + ' results';
+            
+            // Build HTML
+            let html = '';
+            data.groups.forEach(group => {
+                html += `<div class="date-group">${group.label}</div>`;
+                group.contacts.forEach(contact => {
+                    const tagHtml = contact.tag 
+                        ? `<div class="contact-meta"><span class="tag ${contact.tagType || ''}">${contact.tag}</span></div>` 
+                        : '';
+                    html += `
+                        <div class="contact-card" onclick="navigateTo('${contact.detail}')">
+                            <div class="contact-header">
+                                <div class="contact-type">
+                                    <div class="avatar">${contact.initial}</div>
+                                    <div>
+                                        <div class="contact-name">${contact.name}</div>
+                                        <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                    </div>
+                                </div>
+                                <span class="contact-arrow">›</span>
+                            </div>
+                            ${tagHtml}
+                        </div>
+                    `;
+                });
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // View tab selection (contacts screen)
+        const contactsViewTabs = document.querySelector('#screen-contacts .view-tabs');
+        if (contactsViewTabs) {
+            contactsViewTabs.querySelectorAll('.view-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    if (this.classList.contains('view-tab-add')) return;
+                    contactsViewTabs.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    renderContacts(this.textContent);
+                });
+            });
+        }
+
+        // Initial render for contacts (Active Leads is default)
+        renderContacts('Active Leads');
+
+        // Generic view tab handling for other screens (activities)
         document.querySelectorAll('.view-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 if (this.classList.contains('view-tab-add')) return;
+                // Skip contacts screen - handled separately above
+                if (this.closest('#screen-contacts')) return;
+                
                 const parent = this.parentElement;
                 parent.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Update contacts results count based on tab
-                const tabText = this.textContent;
-                const countsEl = document.getElementById('contacts-results-count');
-                if (countsEl) {
-                    if (tabText === 'All contacts') countsEl.textContent = '145 results';
-                    else if (tabText === 'Active Leads') countsEl.textContent = '45 results';
-                    else if (tabText === 'Scheduled') countsEl.textContent = '36 results';
-                }
             });
         });
     </script>

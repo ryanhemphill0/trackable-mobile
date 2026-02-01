@@ -146,6 +146,83 @@
             padding: 0 20px 16px;
         }
         
+        /* Filter Header (tappable) */
+        .filter-header {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-header:active {
+            background: #F9FAFB;
+        }
+        
+        .filter-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+        }
+        
+        .filter-count {
+            font-size: 28px;
+            font-weight: 700;
+            color: #9CA3AF;
+        }
+        
+        .filter-chevron {
+            color: #9CA3AF;
+            margin-left: 4px;
+        }
+        
+        /* Filter Picker Modal */
+        .filter-list {
+            overflow-y: auto;
+            max-height: calc(70vh - 70px);
+        }
+        
+        .filter-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #F3F4F6;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.15s;
+        }
+        
+        .filter-item:active {
+            background: #F9FAFB;
+        }
+        
+        .filter-item.active {
+            background: #EFF6FF;
+        }
+        
+        .filter-item-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .filter-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .filter-item-count {
+            font-size: 14px;
+            color: #6B7280;
+        }
+        
+        .filter-check {
+            color: #3B82F6;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
         /* Search Bar */
         .search-bar {
             margin: 0 20px 16px;
@@ -1035,8 +1112,13 @@
             </div>
             
             <div class="screen-content">
-                <div class="page-title">Activities</div>
-                <div class="page-subtitle">4,696 items</div>
+                <div class="filter-header" onclick="openFilterPicker('activities')">
+                    <span class="filter-title" id="activities-filter-title">All Activities</span>
+                    <span class="filter-count" id="activities-filter-count">4,696</span>
+                    <svg class="filter-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
                 
                 <div class="search-bar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1044,14 +1126,6 @@
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                     Search activities...
-                </div>
-                
-                <div class="filter-chips">
-                    <div class="chip active">All</div>
-                    <div class="chip">Missed Call</div>
-                    <div class="chip">Callback</div>
-                    <div class="chip">Voicemail</div>
-                    <div class="chip">Scheduled</div>
                 </div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
@@ -1330,8 +1404,13 @@
             </div>
             
             <div class="screen-content">
-                <div class="page-title">Contacts</div>
-                <div class="page-subtitle">145 contacts</div>
+                <div class="filter-header" onclick="openFilterPicker('contacts')">
+                    <span class="filter-title" id="contacts-filter-title">All Contacts</span>
+                    <span class="filter-count" id="contacts-filter-count">145</span>
+                    <svg class="filter-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
                 
                 <div class="search-bar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1339,14 +1418,6 @@
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                     Search contacts...
-                </div>
-                
-                <div class="filter-chips">
-                    <div class="chip active">All</div>
-                    <div class="chip">Active Leads</div>
-                    <div class="chip">Scheduled</div>
-                    <div class="chip">Closed Lost</div>
-                    <div class="chip">Needs Action</div>
                 </div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
@@ -2008,6 +2079,100 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Activities Filter Picker Modal -->
+        <div class="modal-overlay" id="activities-filter-modal" onclick="closeFilterPicker('activities', event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <div class="modal-title">Filter Activities</div>
+                    <div class="modal-close" onclick="closeFilterPicker('activities')">&times;</div>
+                </div>
+                <div class="filter-list">
+                    <div class="filter-item active" onclick="selectFilter('activities', 'All Activities', '4,696')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">All Activities</span>
+                            <span class="filter-item-count">4,696 items</span>
+                        </div>
+                        <span class="filter-check">✓</span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('activities', 'Missed Calls', '847')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Missed Calls</span>
+                            <span class="filter-item-count">847 items</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('activities', 'Callbacks', '234')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Callbacks</span>
+                            <span class="filter-item-count">234 items</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('activities', 'Voicemails', '1,203')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Voicemails</span>
+                            <span class="filter-item-count">1,203 items</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('activities', 'Scheduled', '412')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Scheduled</span>
+                            <span class="filter-item-count">412 items</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contacts Filter Picker Modal -->
+        <div class="modal-overlay" id="contacts-filter-modal" onclick="closeFilterPicker('contacts', event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <div class="modal-title">Filter Contacts</div>
+                    <div class="modal-close" onclick="closeFilterPicker('contacts')">&times;</div>
+                </div>
+                <div class="filter-list">
+                    <div class="filter-item active" onclick="selectFilter('contacts', 'All Contacts', '145')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">All Contacts</span>
+                            <span class="filter-item-count">145 contacts</span>
+                        </div>
+                        <span class="filter-check">✓</span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('contacts', 'Active Leads', '45')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Active Leads</span>
+                            <span class="filter-item-count">45 contacts</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('contacts', 'Scheduled', '36')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Scheduled</span>
+                            <span class="filter-item-count">36 contacts</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('contacts', 'Needs Action', '12')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Needs Action</span>
+                            <span class="filter-item-count">12 contacts</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                    <div class="filter-item" onclick="selectFilter('contacts', 'Closed Lost', '64')">
+                        <div class="filter-item-content">
+                            <span class="filter-name">Closed Lost</span>
+                            <span class="filter-item-count">64 contacts</span>
+                        </div>
+                        <span class="filter-check"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -2161,14 +2326,38 @@
             closeWorkspacePicker();
         }
 
-        // Filter chip clicks
-        document.querySelectorAll('.chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                const parent = this.parentElement;
-                parent.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
+        // Filter picker
+        function openFilterPicker(type) {
+            document.getElementById(type + '-filter-modal').classList.add('active');
+        }
+
+        function closeFilterPicker(type, event) {
+            if (!event || event.target.id === type + '-filter-modal') {
+                document.getElementById(type + '-filter-modal').classList.remove('active');
+            }
+        }
+
+        function selectFilter(type, name, count) {
+            // Update header
+            document.getElementById(type + '-filter-title').textContent = name;
+            document.getElementById(type + '-filter-count').textContent = count;
+            
+            // Update active state in modal
+            const modal = document.getElementById(type + '-filter-modal');
+            modal.querySelectorAll('.filter-item').forEach(item => {
+                const itemName = item.querySelector('.filter-name').textContent;
+                const check = item.querySelector('.filter-check');
+                if (itemName === name) {
+                    item.classList.add('active');
+                    check.textContent = '✓';
+                } else {
+                    item.classList.remove('active');
+                    check.textContent = '';
+                }
             });
-        });
+            
+            closeFilterPicker(type);
+        }
     </script>
 </body>
 </html>

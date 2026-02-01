@@ -146,62 +146,113 @@
             padding: 0 20px 16px;
         }
         
-        /* Filter Header with count */
-        .filter-header {
-            padding: 16px 20px 8px;
-        }
-        
-        .filter-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111827;
+        /* View Tabs */
+        .view-tabs {
             display: flex;
-            align-items: baseline;
-            gap: 10px;
+            padding: 0 20px;
+            gap: 24px;
+            border-bottom: 1px solid #E5E7EB;
         }
         
-        .filter-count {
-            font-size: 16px;
+        .view-tab {
+            padding: 16px 0;
+            font-size: 15px;
             font-weight: 500;
+            color: #6B7280;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .view-tab.active {
+            color: #111827;
+        }
+        
+        .view-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #111827;
+        }
+        
+        .view-tab-add {
             color: #9CA3AF;
         }
         
-        /* Segmented Filter */
-        .filter-segment {
+        /* Filter Dropdowns */
+        .filter-dropdowns {
             display: flex;
-            margin: 8px 20px 16px;
-            background: #F3F4F6;
-            border-radius: 10px;
-            padding: 4px;
+            padding: 12px 20px;
+            gap: 8px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
         
-        .filter-segment::-webkit-scrollbar {
+        .filter-dropdowns::-webkit-scrollbar {
             display: none;
         }
         
-        .segment-item {
-            flex: 0 0 auto;
-            padding: 8px 16px;
+        .filter-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: #F3F4F6;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
-            color: #6B7280;
-            border-radius: 8px;
+            color: #374151;
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.2s;
+            flex-shrink: 0;
         }
         
-        .segment-item:active {
-            transform: scale(0.97);
+        .filter-dropdown:active {
+            background: #E5E7EB;
         }
         
-        .segment-item.active {
-            background: #FFFFFF;
-            color: #111827;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        .filter-dropdown svg {
+            width: 14px;
+            height: 14px;
+            color: #6B7280;
+        }
+        
+        /* Results Bar */
+        .results-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #6B7280;
+        }
+        
+        .results-count {
+            font-weight: 500;
+        }
+        
+        .results-sort {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        
+        .results-sort svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Date Group Headers */
+        .date-group {
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #6B7280;
+            background: #F9FAFB;
         }
         
         /* Search Bar */
@@ -1093,19 +1144,11 @@
             </div>
             
             <div class="screen-content">
-                <div class="filter-header">
-                    <div class="filter-title">
-                        Activities
-                        <span class="filter-count" id="activities-filter-count">4,696</span>
-                    </div>
-                </div>
-                
-                <div class="filter-segment" id="activities-segment">
-                    <div class="segment-item active" onclick="selectSegment('activities', this, '4,696')">All</div>
-                    <div class="segment-item" onclick="selectSegment('activities', this, '847')">Missed</div>
-                    <div class="segment-item" onclick="selectSegment('activities', this, '234')">Callback</div>
-                    <div class="segment-item" onclick="selectSegment('activities', this, '1,203')">Voicemail</div>
-                    <div class="segment-item" onclick="selectSegment('activities', this, '412')">Scheduled</div>
+                <div class="view-tabs">
+                    <div class="view-tab active">All activities</div>
+                    <div class="view-tab">Missed Calls</div>
+                    <div class="view-tab">Voicemails</div>
+                    <div class="view-tab view-tab-add">+ Add View</div>
                 </div>
                 
                 <div class="search-bar">
@@ -1115,6 +1158,45 @@
                     </svg>
                     Search activities...
                 </div>
+                
+                <div class="filter-dropdowns">
+                    <div class="filter-dropdown">
+                        Call Type
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Date Range
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Contact
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Duration
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="results-bar">
+                    <span class="results-count">4,696 results</span>
+                    <span class="results-sort">
+                        Sorted by Date
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12l7 7 7-7"/>
+                        </svg>
+                    </span>
+                </div>
+                
+                <div class="date-group">Today</div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
@@ -1174,6 +1256,8 @@
                         <div class="duration">00:16</div>
                     </div>
                 </div>
+                
+                <div class="date-group">Yesterday</div>
                 
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
@@ -1392,19 +1476,11 @@
             </div>
             
             <div class="screen-content">
-                <div class="filter-header">
-                    <div class="filter-title">
-                        Contacts
-                        <span class="filter-count" id="contacts-filter-count">145</span>
-                    </div>
-                </div>
-                
-                <div class="filter-segment" id="contacts-segment">
-                    <div class="segment-item active" onclick="selectSegment('contacts', this, '145')">All</div>
-                    <div class="segment-item" onclick="selectSegment('contacts', this, '45')">Active</div>
-                    <div class="segment-item" onclick="selectSegment('contacts', this, '36')">Scheduled</div>
-                    <div class="segment-item" onclick="selectSegment('contacts', this, '12')">Needs Action</div>
-                    <div class="segment-item" onclick="selectSegment('contacts', this, '64')">Lost</div>
+                <div class="view-tabs">
+                    <div class="view-tab active">All contacts</div>
+                    <div class="view-tab">Active Leads</div>
+                    <div class="view-tab">Scheduled</div>
+                    <div class="view-tab view-tab-add">+ Add View</div>
                 </div>
                 
                 <div class="search-bar">
@@ -1414,6 +1490,45 @@
                     </svg>
                     Search contacts...
                 </div>
+                
+                <div class="filter-dropdowns">
+                    <div class="filter-dropdown">
+                        Contact owner
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Create Date
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Last Activity
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="filter-dropdown">
+                        Lead Source
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="results-bar">
+                    <span class="results-count">145 results</span>
+                    <span class="results-sort">
+                        Sorted by Create date
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12l7 7 7-7"/>
+                        </svg>
+                    </span>
+                </div>
+                
+                <div class="date-group">Today</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail-simpson')">
                     <div class="avatar">S</div>
@@ -1429,18 +1544,18 @@
                     <div class="avatar">A</div>
                     <div class="contact-info">
                         <div class="contact-name">applevalleydent</div>
-                        <div class="contact-detail">📞 Digital Marketing • Today</div>
-                        <span class="tag needs-action">Needs Action</span>
+                        <div class="contact-detail">Digital Marketing</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
+                
+                <div class="date-group">Yesterday</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
                     <div class="avatar">R</div>
                     <div class="contact-info">
                         <div class="contact-name">ross thomas</div>
-                        <div class="contact-detail">📞 Digital Marketing • 2 days ago</div>
-                        <span class="tag needs-action">Needs Action</span>
+                        <div class="contact-detail">Digital Marketing</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -1449,18 +1564,18 @@
                     <div class="avatar">A</div>
                     <div class="contact-info">
                         <div class="contact-name">andrea</div>
-                        <div class="contact-detail">👤 Assigned to Ange • 4 days ago</div>
-                        <span class="tag needs-action">Needs Action</span>
+                        <div class="contact-detail">Referral</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
+                
+                <div class="date-group">This week</div>
                 
                 <div class="contact-card" onclick="navigateTo('contact-detail')">
                     <div class="avatar">L</div>
                     <div class="contact-info">
                         <div class="contact-name">Laura Guffey</div>
-                        <div class="contact-detail">📅 Feb 5 at 12:30 PM</div>
-                        <span class="tag scheduled">Scheduled</span>
+                        <div class="contact-detail">Current Patient</div>
                     </div>
                     <span class="contact-arrow">›</span>
                 </div>
@@ -2228,18 +2343,15 @@
             closeWorkspacePicker();
         }
 
-        // Segment filter selection
-        function selectSegment(type, element, count) {
-            // Update active state
-            const segment = document.getElementById(type + '-segment');
-            segment.querySelectorAll('.segment-item').forEach(item => {
-                item.classList.remove('active');
+        // View tab selection
+        document.querySelectorAll('.view-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                if (this.classList.contains('view-tab-add')) return;
+                const parent = this.parentElement;
+                parent.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
             });
-            element.classList.add('active');
-            
-            // Update count
-            document.getElementById(type + '-filter-count').textContent = count;
-        }
+        });
     </script>
 </body>
 </html>

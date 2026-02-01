@@ -550,6 +550,23 @@
             font-size: 20px;
         }
         
+        .contact-datetime {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .contact-time {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .contact-date {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
         /* Stats Row */
         .stats-row {
             display: flex;
@@ -2260,25 +2277,25 @@
                     {
                         label: 'Today',
                         contacts: [
-                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson' },
-                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'Patient', tag: null, detail: 'contact-detail' }
+                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson', time: '9:04 AM', date: 'Today' },
+                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail', time: '8:30 AM', date: 'Today' },
+                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'Patient', tag: null, detail: 'contact-detail', time: '4:07 PM', date: 'Today' }
                         ]
                     },
                     {
                         label: 'Yesterday',
                         contacts: [
-                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'M', name: 'Mike Johnson', lifecycle: 'Patient', tag: null, detail: 'contact-detail' }
+                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail', time: '3:22 PM', date: 'Jan 31' },
+                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail', time: '11:15 AM', date: 'Jan 31' },
+                            { initial: 'M', name: 'Mike Johnson', lifecycle: 'Patient', tag: null, detail: 'contact-detail', time: '9:45 AM', date: 'Jan 31' }
                         ]
                     },
                     {
                         label: 'This week',
                         contacts: [
-                            { initial: 'J', name: 'Jennifer Wilson', lifecycle: 'Patient', tag: null, detail: 'contact-detail' },
-                            { initial: 'D', name: 'David Chen', lifecycle: 'Lead', tag: null, detail: 'contact-detail' },
-                            { initial: 'S', name: 'Sarah Brown', lifecycle: 'Qualified Lead', tag: null, detail: 'contact-detail' }
+                            { initial: 'J', name: 'Jennifer Wilson', lifecycle: 'Patient', tag: null, detail: 'contact-detail', time: '2:30 PM', date: 'Jan 29' },
+                            { initial: 'D', name: 'David Chen', lifecycle: 'Lead', tag: null, detail: 'contact-detail', time: '10:00 AM', date: 'Jan 28' },
+                            { initial: 'S', name: 'Sarah Brown', lifecycle: 'Qualified Lead', tag: null, detail: 'contact-detail', time: '4:45 PM', date: 'Jan 27' }
                         ]
                     }
                 ]
@@ -2289,23 +2306,23 @@
                     {
                         label: 'Today',
                         contacts: [
-                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson' },
-                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail' }
+                            { initial: 'S', name: 'Simpson Linda', lifecycle: 'Lead', tag: 'Missed Call', tagType: 'needs-action', detail: 'contact-detail-simpson', time: '9:04 AM', date: 'Today' },
+                            { initial: 'A', name: 'Apple Valley Dental', lifecycle: 'Qualified Lead', tag: 'Appt Not Scheduled', tagType: 'needs-action', detail: 'contact-detail', time: '8:30 AM', date: 'Today' }
                         ]
                     },
                     {
                         label: 'Yesterday',
                         contacts: [
-                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail' }
+                            { initial: 'R', name: 'Ross Thomas', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail', time: '3:22 PM', date: 'Jan 31' },
+                            { initial: 'A', name: 'Andrea Martinez', lifecycle: 'New Patient Scheduled', tag: 'Broken Appointment', tagType: 'needs-action', detail: 'contact-detail', time: '11:15 AM', date: 'Jan 31' }
                         ]
                     },
                     {
                         label: 'This week',
                         contacts: [
-                            { initial: 'K', name: 'Karen White', lifecycle: 'Lead', tag: 'Needs Follow-up', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'T', name: 'Tom Garcia', lifecycle: 'Qualified Lead', tag: 'Callback Requested', tagType: 'needs-action', detail: 'contact-detail' },
-                            { initial: 'N', name: 'Nancy Davis', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail' }
+                            { initial: 'K', name: 'Karen White', lifecycle: 'Lead', tag: 'Needs Follow-up', tagType: 'needs-action', detail: 'contact-detail', time: '1:30 PM', date: 'Jan 30' },
+                            { initial: 'T', name: 'Tom Garcia', lifecycle: 'Qualified Lead', tag: 'Callback Requested', tagType: 'needs-action', detail: 'contact-detail', time: '11:00 AM', date: 'Jan 29' },
+                            { initial: 'N', name: 'Nancy Davis', lifecycle: 'Lead', tag: 'New Form', tagType: 'needs-action', detail: 'contact-detail', time: '9:15 AM', date: 'Jan 28' }
                         ]
                     }
                 ]
@@ -2316,23 +2333,23 @@
                     {
                         label: 'Tomorrow',
                         contacts: [
-                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 12:30 PM', tagType: 'scheduled', detail: 'contact-detail' },
-                            { initial: 'J', name: 'James Miller', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 2:00 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                            { initial: 'L', name: 'Laura Guffey', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 12:30 PM', tagType: 'scheduled', detail: 'contact-detail', time: '12:30 PM', date: 'Feb 5' },
+                            { initial: 'J', name: 'James Miller', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 2:00 PM', tagType: 'scheduled', detail: 'contact-detail', time: '2:00 PM', date: 'Feb 5' }
                         ]
                     },
                     {
                         label: 'This week',
                         contacts: [
-                            { initial: 'E', name: 'Emily Rodriguez', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 9:00 AM', tagType: 'scheduled', detail: 'contact-detail' },
-                            { initial: 'C', name: 'Chris Anderson', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 11:30 AM', tagType: 'scheduled', detail: 'contact-detail' },
-                            { initial: 'P', name: 'Patricia Lee', lifecycle: 'New Patient Scheduled', tag: 'Feb 7 @ 3:00 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                            { initial: 'E', name: 'Emily Rodriguez', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 9:00 AM', tagType: 'scheduled', detail: 'contact-detail', time: '9:00 AM', date: 'Feb 6' },
+                            { initial: 'C', name: 'Chris Anderson', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 11:30 AM', tagType: 'scheduled', detail: 'contact-detail', time: '11:30 AM', date: 'Feb 6' },
+                            { initial: 'P', name: 'Patricia Lee', lifecycle: 'New Patient Scheduled', tag: 'Feb 7 @ 3:00 PM', tagType: 'scheduled', detail: 'contact-detail', time: '3:00 PM', date: 'Feb 7' }
                         ]
                     },
                     {
                         label: 'Next week',
                         contacts: [
-                            { initial: 'R', name: 'Robert Taylor', lifecycle: 'New Patient Scheduled', tag: 'Feb 10 @ 10:00 AM', tagType: 'scheduled', detail: 'contact-detail' },
-                            { initial: 'M', name: 'Maria Hernandez', lifecycle: 'New Patient Scheduled', tag: 'Feb 11 @ 1:30 PM', tagType: 'scheduled', detail: 'contact-detail' }
+                            { initial: 'R', name: 'Robert Taylor', lifecycle: 'New Patient Scheduled', tag: 'Feb 10 @ 10:00 AM', tagType: 'scheduled', detail: 'contact-detail', time: '10:00 AM', date: 'Feb 10' },
+                            { initial: 'M', name: 'Maria Hernandez', lifecycle: 'New Patient Scheduled', tag: 'Feb 11 @ 1:30 PM', tagType: 'scheduled', detail: 'contact-detail', time: '1:30 PM', date: 'Feb 11' }
                         ]
                     }
                 ]
@@ -2368,7 +2385,10 @@
                                         <div class="contact-lifecycle">${contact.lifecycle}</div>
                                     </div>
                                 </div>
-                                <span class="contact-arrow">›</span>
+                                <div class="contact-datetime">
+                                    <div class="contact-time">${contact.time}</div>
+                                    <div class="contact-date">${contact.date}</div>
+                                </div>
                             </div>
                             ${tagHtml}
                         </div>

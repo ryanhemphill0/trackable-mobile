@@ -125,6 +125,52 @@
             color: #6B7280;
         }
         
+        .header-search-icon {
+            padding: 8px;
+            cursor: pointer;
+            color: #374151;
+        }
+        
+        .header-search-icon:active {
+            opacity: 0.7;
+        }
+        
+        .search-header {
+            padding: 12px 16px;
+        }
+        
+        .header-search-expanded {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #F3F4F6;
+            padding: 10px 14px;
+            border-radius: 10px;
+            flex: 1;
+        }
+        
+        .header-search-expanded input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #111827;
+            outline: none;
+        }
+        
+        .header-search-expanded input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .search-cancel {
+            color: #3B82F6;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            padding-left: 8px;
+        }
+        
         /* Screen Content */
         .screen-content {
             flex: 1;
@@ -149,14 +195,11 @@
         /* View Tabs */
         .view-tabs {
             display: flex;
-            padding: 12px 16px;
-            gap: 8px;
+            padding: 12px 20px;
+            gap: 10px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            background: #F3F4F6;
-            margin: 0 16px 12px;
-            border-radius: 12px;
         }
         
         .view-tabs::-webkit-scrollbar {
@@ -164,12 +207,12 @@
         }
         
         .view-tab {
-            padding: 10px 16px;
+            padding: 8px 14px;
             font-size: 14px;
             font-weight: 500;
             color: #6B7280;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 18px;
             white-space: nowrap;
             flex-shrink: 0;
             transition: all 0.15s;
@@ -181,10 +224,8 @@
         }
         
         .view-tab.active {
-            background: #FFFFFF;
-            color: #111827;
-            font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: #111827;
+            color: #FFFFFF;
         }
         
         .view-tab-add {
@@ -1199,7 +1240,7 @@
     <div class="app-container">
         <!-- Activities Screen -->
         <div class="screen" id="screen-activities">
-            <div class="header">
+            <div class="header" id="activities-header">
                 <div>
                     <div class="header-title">Workspace</div>
                     <div class="header-workspace" onclick="openWorkspacePicker()">
@@ -1209,18 +1250,25 @@
                         </svg>
                     </div>
                 </div>
+                <div class="header-search-icon" onclick="openActivitiesSearch()">
+                    <svg viewBox="0 0 256 256" fill="currentColor" width="24" height="24">
+                        <path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"/>
+                    </svg>
+                </div>
             </div>
             
-            <div class="screen-content">
-                <div class="search-bar" id="activities-search-bar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="header search-header" id="activities-search-header" style="display: none;">
+                <div class="header-search-expanded">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" width="20" height="20">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                     <input type="text" id="activities-search-input" placeholder="Search all activities..." oninput="searchActivities(this.value)">
-                    <span class="search-clear" id="activities-search-clear" onclick="clearActivitySearch()">&times;</span>
+                    <span class="search-cancel" onclick="closeActivitiesSearch()">Cancel</span>
                 </div>
-                
+            </div>
+            
+            <div class="screen-content">
                 <div class="view-tabs" id="activities-view-tabs">
                     <div class="view-tab active">All activities</div>
                     <div class="view-tab">Missed Calls</div>
@@ -1516,7 +1564,7 @@
 
         <!-- Contacts Screen -->
         <div class="screen active" id="screen-contacts">
-            <div class="header">
+            <div class="header" id="contacts-header">
                 <div>
                     <div class="header-title">Workspace</div>
                     <div class="header-workspace" onclick="openWorkspacePicker()">
@@ -1526,18 +1574,25 @@
                         </svg>
                     </div>
                 </div>
+                <div class="header-search-icon" onclick="openContactsSearch()">
+                    <svg viewBox="0 0 256 256" fill="currentColor" width="24" height="24">
+                        <path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"/>
+                    </svg>
+                </div>
             </div>
             
-            <div class="screen-content">
-                <div class="search-bar" id="contacts-search-bar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="header search-header" id="contacts-search-header" style="display: none;">
+                <div class="header-search-expanded">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" width="20" height="20">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                     <input type="text" id="contacts-search-input" placeholder="Search all contacts..." oninput="searchContacts(this.value)">
-                    <span class="search-clear" id="contacts-search-clear" onclick="clearContactSearch()">&times;</span>
+                    <span class="search-cancel" onclick="closeContactsSearch()">Cancel</span>
                 </div>
-                
+            </div>
+            
+            <div class="screen-content">
                 <div class="view-tabs" id="contacts-view-tabs">
                     <div class="view-tab">All contacts</div>
                     <div class="view-tab active">Active Leads</div>
@@ -2486,22 +2541,19 @@
         
         // Search contacts
         function searchContacts(query) {
-            const clearBtn = document.getElementById('contacts-search-clear');
             const viewTabs = document.getElementById('contacts-view-tabs');
             const container = document.getElementById('contacts-list-container');
             const countsEl = document.getElementById('contacts-results-count');
             
             if (!query.trim()) {
                 // Clear search - restore tab view
-                clearBtn.classList.remove('visible');
                 viewTabs.classList.remove('search-active');
                 const activeTab = viewTabs.querySelector('.view-tab.active');
                 renderContacts(activeTab ? activeTab.textContent : 'Active Leads');
                 return;
             }
             
-            // Show clear button, dim tabs
-            clearBtn.classList.add('visible');
+            // Hide tabs when searching
             viewTabs.classList.add('search-active');
             
             // Filter all contacts
@@ -2549,12 +2601,25 @@
             container.innerHTML = html;
         }
         
-        // Clear search
-        function clearContactSearch() {
+        // Open contacts search
+        function openContactsSearch() {
+            document.getElementById('contacts-header').style.display = 'none';
+            document.getElementById('contacts-search-header').style.display = 'block';
+            document.getElementById('contacts-search-input').focus();
+        }
+        
+        // Close contacts search
+        function closeContactsSearch() {
+            document.getElementById('contacts-header').style.display = 'flex';
+            document.getElementById('contacts-search-header').style.display = 'none';
             const input = document.getElementById('contacts-search-input');
             input.value = '';
             searchContacts('');
-            input.focus();
+        }
+        
+        // Clear search (legacy, now use close)
+        function clearContactSearch() {
+            closeContactsSearch();
         }
         
         // Activities data for search
@@ -2574,22 +2639,35 @@
             if (container) originalActivitiesHTML = container.innerHTML;
         });
         
+        // Open activities search
+        function openActivitiesSearch() {
+            document.getElementById('activities-header').style.display = 'none';
+            document.getElementById('activities-search-header').style.display = 'block';
+            document.getElementById('activities-search-input').focus();
+        }
+        
+        // Close activities search
+        function closeActivitiesSearch() {
+            document.getElementById('activities-header').style.display = 'flex';
+            document.getElementById('activities-search-header').style.display = 'none';
+            const input = document.getElementById('activities-search-input');
+            input.value = '';
+            searchActivities('');
+        }
+        
         // Search activities
         function searchActivities(query) {
-            const clearBtn = document.getElementById('activities-search-clear');
             const viewTabs = document.getElementById('activities-view-tabs');
             const container = document.getElementById('activities-list-container');
             const countsEl = document.getElementById('activities-results-count');
             
             if (!query.trim()) {
-                clearBtn.classList.remove('visible');
                 viewTabs.classList.remove('search-active');
                 if (originalActivitiesHTML) container.innerHTML = originalActivitiesHTML;
                 if (countsEl) countsEl.textContent = '4,696 results';
                 return;
             }
             
-            clearBtn.classList.add('visible');
             viewTabs.classList.add('search-active');
             
             const q = query.toLowerCase();
@@ -2644,12 +2722,9 @@
             container.innerHTML = html;
         }
         
-        // Clear activity search
+        // Clear activity search (legacy, now use close)
         function clearActivitySearch() {
-            const input = document.getElementById('activities-search-input');
-            input.value = '';
-            searchActivities('');
-            input.focus();
+            closeActivitiesSearch();
         }
 
         // Generic view tab handling for other screens (activities)

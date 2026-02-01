@@ -1207,23 +1207,24 @@
             </div>
             
             <div class="screen-content">
-                <div class="view-tabs">
+                <div class="search-bar" id="activities-search-bar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="activities-search-input" placeholder="Search all activities..." oninput="searchActivities(this.value)">
+                    <span class="search-clear" id="activities-search-clear" onclick="clearActivitySearch()">&times;</span>
+                </div>
+                
+                <div class="view-tabs" id="activities-view-tabs">
                     <div class="view-tab active">All activities</div>
                     <div class="view-tab">Missed Calls</div>
                     <div class="view-tab">Voicemails</div>
                     <div class="view-tab view-tab-add">+ Add View</div>
                 </div>
                 
-                <div class="search-bar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                    Search activities...
-                </div>
-                
-                <div class="results-bar">
-                    <span class="results-count">4,696 results</span>
+                <div class="results-bar" id="activities-results-bar">
+                    <span class="results-count" id="activities-results-count">4,696 results</span>
                     <span class="results-sort">
                         Sorted by Date
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1234,12 +1235,15 @@
                 
                 <div class="date-group">Today</div>
                 
+                <div id="activities-list-container">
+                <div class="date-group">Today</div>
+                
                 <div class="activity-card" onclick="navigateTo('activity-detail')">
                     <div class="activity-header">
                         <div class="activity-type">
                             <div class="activity-icon call">
                                 <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M216,48H176V40a8,8,0,0,0-16,0v8H96V40a8,8,0,0,0-16,0v8H40A16,16,0,0,0,24,64V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,160H40V64H80v8a8,8,0,0,0,16,0V64h64v8a8,8,0,0,0,16,0V64h40ZM80,112a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,112Zm0,40a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,152Z"/>
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
                         </svg>
                             </div>
                             <div>
@@ -1247,7 +1251,10 @@
                                 <div class="activity-name">Laura Guffey</div>
                             </div>
                         </div>
-                        <div class="activity-time">4:07 PM</div>
+                        <div class="contact-datetime">
+                            <div class="contact-time">4:07 PM</div>
+                            <div class="contact-date">Today</div>
+                        </div>
                     </div>
                     <div class="activity-meta">
                         <span class="tag scheduled">Appt Rescheduled</span>
@@ -1268,7 +1275,7 @@
                         <div class="activity-type">
                             <div class="activity-icon missed">
                                 <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M216,48H176V40a8,8,0,0,0-16,0v8H96V40a8,8,0,0,0-16,0v8H40A16,16,0,0,0,24,64V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,160H40V64H80v8a8,8,0,0,0,16,0V64h64v8a8,8,0,0,0,16,0V64h40ZM80,112a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,112Zm0,40a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,152Z"/>
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
                         </svg>
                             </div>
                             <div>
@@ -1276,7 +1283,10 @@
                                 <div class="activity-name">simpson linda</div>
                             </div>
                         </div>
-                        <div class="activity-time">9:04 AM</div>
+                        <div class="contact-datetime">
+                            <div class="contact-time">9:04 AM</div>
+                            <div class="contact-date">Today</div>
+                        </div>
                     </div>
                     <div class="activity-meta">
                         <span class="tag needs-action">Needs Action</span>
@@ -1300,7 +1310,7 @@
                         <div class="activity-type">
                             <div class="activity-icon call">
                                 <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M216,48H176V40a8,8,0,0,0-16,0v8H96V40a8,8,0,0,0-16,0v8H40A16,16,0,0,0,24,64V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,160H40V64H80v8a8,8,0,0,0,16,0V64h64v8a8,8,0,0,0,16,0V64h40ZM80,112a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,112Zm0,40a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,152Z"/>
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
                         </svg>
                             </div>
                             <div>
@@ -1308,7 +1318,10 @@
                                 <div class="activity-name">+1 Contact</div>
                             </div>
                         </div>
-                        <div class="activity-time">6:00 PM</div>
+                        <div class="contact-datetime">
+                            <div class="contact-time">6:00 PM</div>
+                            <div class="contact-date">Jan 31</div>
+                        </div>
                     </div>
                     <div class="activity-meta">
                         <span class="tag closed-won">Scheduled</span>
@@ -1320,7 +1333,7 @@
                         <div class="activity-type">
                             <div class="activity-icon call">
                                 <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M216,48H176V40a8,8,0,0,0-16,0v8H96V40a8,8,0,0,0-16,0v8H40A16,16,0,0,0,24,64V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,160H40V64H80v8a8,8,0,0,0,16,0V64h64v8a8,8,0,0,0,16,0V64h40ZM80,112a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,112Zm0,40a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,152Z"/>
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
                         </svg>
                             </div>
                             <div>
@@ -1328,11 +1341,15 @@
                                 <div class="activity-name">Jennifer Martinez</div>
                             </div>
                         </div>
-                        <div class="activity-time">3:45 PM</div>
+                        <div class="contact-datetime">
+                            <div class="contact-time">3:45 PM</div>
+                            <div class="contact-date">Jan 31</div>
+                        </div>
                     </div>
                     <div class="activity-meta">
                         <span class="tag closed-won">Closed Won</span>
                     </div>
+                </div>
                 </div>
             </div>
             
@@ -2532,6 +2549,101 @@
             const input = document.getElementById('contacts-search-input');
             input.value = '';
             searchContacts('');
+            input.focus();
+        }
+        
+        // Activities data for search
+        const activitiesData = [
+            { type: 'Inbound Call', name: 'Laura Guffey', tag: 'Appt Rescheduled', tagType: 'scheduled', time: '4:07 PM', date: 'Today', hasAudio: true, duration: '01:28' },
+            { type: 'Missed Call', name: 'simpson linda', tag: 'Needs Action', tagType: 'needs-action', time: '9:04 AM', date: 'Today', hasAudio: true, duration: '00:16', phone: '(360) 480-9662' },
+            { type: 'Inbound Call', name: '+1 Contact', tag: 'Scheduled', tagType: 'closed-won', time: '6:00 PM', date: 'Jan 31', hasAudio: false },
+            { type: 'Outbound Call', name: 'Jennifer Martinez', tag: 'Closed Won', tagType: 'closed-won', time: '3:45 PM', date: 'Jan 31', hasAudio: false },
+            { type: 'Voicemail', name: 'Robert Smith', tag: 'New Lead', tagType: 'needs-action', time: '2:15 PM', date: 'Jan 30', hasAudio: true, duration: '00:45' },
+            { type: 'Inbound Call', name: 'Maria Garcia', tag: 'Scheduled', tagType: 'scheduled', time: '11:30 AM', date: 'Jan 30', hasAudio: true, duration: '02:10' }
+        ];
+        
+        // Store original activities HTML
+        let originalActivitiesHTML = '';
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('activities-list-container');
+            if (container) originalActivitiesHTML = container.innerHTML;
+        });
+        
+        // Search activities
+        function searchActivities(query) {
+            const clearBtn = document.getElementById('activities-search-clear');
+            const viewTabs = document.getElementById('activities-view-tabs');
+            const container = document.getElementById('activities-list-container');
+            const countsEl = document.getElementById('activities-results-count');
+            
+            if (!query.trim()) {
+                clearBtn.classList.remove('visible');
+                viewTabs.classList.remove('search-active');
+                if (originalActivitiesHTML) container.innerHTML = originalActivitiesHTML;
+                if (countsEl) countsEl.textContent = '4,696 results';
+                return;
+            }
+            
+            clearBtn.classList.add('visible');
+            viewTabs.classList.add('search-active');
+            
+            const q = query.toLowerCase();
+            const results = activitiesData.filter(a => 
+                a.type.toLowerCase().includes(q) || 
+                a.name.toLowerCase().includes(q) ||
+                (a.tag && a.tag.toLowerCase().includes(q))
+            );
+            
+            if (countsEl) countsEl.textContent = results.length + ' results';
+            
+            if (results.length === 0) {
+                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">No activities found for "${query}"</div>`;
+                return;
+            }
+            
+            let html = `<div class="date-group">Search Results</div>`;
+            results.forEach(activity => {
+                const iconClass = activity.type === 'Missed Call' ? 'missed' : 'call';
+                const phoneHtml = activity.phone ? `<span style="color: #6B7280; font-size: 13px;">${activity.phone}</span>` : '';
+                const audioHtml = activity.hasAudio ? `
+                    <div class="audio-player" onclick="event.stopPropagation()">
+                        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                        <div class="waveform"></div>
+                        <div class="duration">${activity.duration}</div>
+                    </div>` : '';
+                html += `
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-type">
+                                <div class="activity-icon ${iconClass}">
+                                    <svg viewBox="0 0 256 256" fill="currentColor"><path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="activity-title">${activity.type}</div>
+                                    <div class="activity-name">${activity.name}</div>
+                                </div>
+                            </div>
+                            <div class="contact-datetime">
+                                <div class="contact-time">${activity.time}</div>
+                                <div class="contact-date">${activity.date}</div>
+                            </div>
+                        </div>
+                        <div class="activity-meta">
+                            <span class="tag ${activity.tagType}">${activity.tag}</span>
+                            ${phoneHtml}
+                        </div>
+                        ${audioHtml}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        
+        // Clear activity search
+        function clearActivitySearch() {
+            const input = document.getElementById('activities-search-input');
+            input.value = '';
+            searchActivities('');
             input.focus();
         }
 

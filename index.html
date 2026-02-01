@@ -149,35 +149,45 @@
         /* View Tabs */
         .view-tabs {
             display: flex;
-            padding: 0 20px;
-            gap: 24px;
-            border-bottom: 1px solid #E5E7EB;
+            padding: 4px 16px;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .view-tabs::-webkit-scrollbar {
+            display: none;
         }
         
         .view-tab {
-            padding: 16px 0;
-            font-size: 15px;
+            padding: 10px 16px;
+            font-size: 14px;
             font-weight: 500;
             color: #6B7280;
             cursor: pointer;
-            position: relative;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+        
+        .view-tab:active {
+            transform: scale(0.97);
         }
         
         .view-tab.active {
-            color: #111827;
-        }
-        
-        .view-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
             background: #111827;
+            color: #FFFFFF;
         }
         
         .view-tab-add {
+            color: #9CA3AF;
+            border: 1px dashed #D1D5DB;
+        }
+        
+        .view-tab-add.active {
+            background: transparent;
             color: #9CA3AF;
         }
         

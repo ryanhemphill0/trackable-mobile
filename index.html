@@ -2400,7 +2400,7 @@
                         ]
                     },
                     {
-                        label: 'This week',
+                        label: 'Older',
                         contacts: [
                             { initial: 'J', name: 'Jennifer Wilson', lifecycle: 'Patient', tag: null, detail: 'contact-detail', time: '2:30 PM', date: 'Jan 29' },
                             { initial: 'D', name: 'David Chen', lifecycle: 'Lead', tag: null, detail: 'contact-detail', time: '10:00 AM', date: 'Jan 28' },
@@ -2427,7 +2427,7 @@
                         ]
                     },
                     {
-                        label: 'This week',
+                        label: 'Older',
                         contacts: [
                             { initial: 'K', name: 'Karen White', lifecycle: 'Lead', tag: 'Needs Follow-up', tagType: 'needs-action', detail: 'contact-detail', time: '1:30 PM', date: 'Jan 30' },
                             { initial: 'T', name: 'Tom Garcia', lifecycle: 'Qualified Lead', tag: 'Callback Requested', tagType: 'needs-action', detail: 'contact-detail', time: '11:00 AM', date: 'Jan 29' },
@@ -2440,14 +2440,14 @@
                 count: 36,
                 groups: [
                     {
-                        label: 'Tomorrow',
+                        label: 'Today',
                         contacts: [
                             { initial: 'L', name: 'Laura Guffey', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 12:30 PM', tagType: 'scheduled', detail: 'contact-detail', time: '12:30 PM', date: 'Feb 5' },
                             { initial: 'J', name: 'James Miller', lifecycle: 'New Patient Scheduled', tag: 'Feb 5 @ 2:00 PM', tagType: 'scheduled', detail: 'contact-detail', time: '2:00 PM', date: 'Feb 5' }
                         ]
                     },
                     {
-                        label: 'This week',
+                        label: 'Older',
                         contacts: [
                             { initial: 'E', name: 'Emily Rodriguez', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 9:00 AM', tagType: 'scheduled', detail: 'contact-detail', time: '9:00 AM', date: 'Feb 6' },
                             { initial: 'C', name: 'Chris Anderson', lifecycle: 'New Patient Scheduled', tag: 'Feb 6 @ 11:30 AM', tagType: 'scheduled', detail: 'contact-detail', time: '11:30 AM', date: 'Feb 6' },
@@ -2455,7 +2455,7 @@
                         ]
                     },
                     {
-                        label: 'Next week',
+                        label: 'Older',
                         contacts: [
                             { initial: 'R', name: 'Robert Taylor', lifecycle: 'New Patient Scheduled', tag: 'Feb 10 @ 10:00 AM', tagType: 'scheduled', detail: 'contact-detail', time: '10:00 AM', date: 'Feb 10' },
                             { initial: 'M', name: 'Maria Hernandez', lifecycle: 'New Patient Scheduled', tag: 'Feb 11 @ 1:30 PM', tagType: 'scheduled', detail: 'contact-detail', time: '1:30 PM', date: 'Feb 11' }
@@ -2479,6 +2479,7 @@
             // Build HTML
             let html = '';
             data.groups.forEach(group => {
+                html += `<div class="date-group">${group.label}</div>`;
                 group.contacts.forEach(contact => {
                     const tagHtml = contact.tag 
                         ? `<div class="contact-meta"><span class="tag ${contact.tagType || ''}">${contact.tag}</span></div>` 

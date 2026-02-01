@@ -1595,8 +1595,8 @@
             
             <div class="screen-content">
                 <div class="view-tabs" id="contacts-view-tabs">
-                    <div class="view-tab">All contacts</div>
-                    <div class="view-tab active">Active Leads</div>
+                    <div class="view-tab active">All contacts</div>
+                    <div class="view-tab">Active Leads</div>
                     <div class="view-tab">Scheduled</div>
                     <div class="view-tab view-tab-add">+ Add View</div>
                 </div>
@@ -1604,7 +1604,7 @@
                 <div class="results-bar">
                     <span class="results-count" id="contacts-results-count">45 results</span>
                     <span class="results-sort">
-                        Sorted by Create date
+                        Sorted by Latest Activity
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 5v14M5 12l7 7 7-7"/>
                         </svg>
@@ -2521,8 +2521,8 @@
             });
         }
 
-        // Initial render for contacts (Active Leads is default)
-        renderContacts('Active Leads');
+        // Initial render for contacts (All contacts is default)
+        renderContacts('All contacts');
         
         // Get all contacts for search (flattened from all views)
         function getAllContacts() {

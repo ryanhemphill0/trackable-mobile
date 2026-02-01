@@ -861,6 +861,28 @@
             background: #059669;
         }
         
+        /* Notification Styles */
+        .notifications-header-row { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .notifications-actions { display: flex; align-items: center; gap: 12px; }
+        .mark-read-link { color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer; }
+        .notification-tabs { display: flex; gap: 0; padding: 0 20px 12px; border-bottom: 1px solid #E5E7EB; }
+        .notification-tab { padding: 8px 16px; font-size: 14px; color: #6B7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+        .notification-tab.active { color: #111827; font-weight: 600; border-bottom: 2px solid #111827; }
+        .tab-badge { background: #E5E7EB; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin-left: 4px; }
+        .notification-list { padding: 0; }
+        .notification-card { display: flex; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #F3F4F6; }
+        .notification-indicator { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #D1D5DB; margin-top: 6px; flex-shrink: 0; }
+        .notification-indicator.unread { background: #3B82F6; border-color: #3B82F6; }
+        .notification-content { flex: 1; min-width: 0; }
+        .notification-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+        .notification-title { font-size: 14px; color: #374151; }
+        .notification-title strong { color: #111827; }
+        .notification-time { font-size: 13px; color: #9CA3AF; white-space: nowrap; }
+        .avatar-inline { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #E5E7EB; border-radius: 4px; font-size: 10px; font-weight: 600; color: #374151; margin: 0 2px; vertical-align: middle; }
+        .more-people { color: #6B7280; font-size: 13px; }
+        .notification-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+        .notification-summary { font-size: 14px; color: #6B7280; line-height: 1.5; background: #F9FAFB; padding: 12px; border-radius: 8px; }
+        
         /* Task Styles */
         .task-section {
             margin: 16px 20px;
@@ -1803,95 +1825,76 @@
             </div>
             
             <div class="screen-content">
-                <div class="page-title">Notifications</div>
-                
-                <div class="filter-chips">
-                    <div class="chip active">All</div>
-                    <div class="chip">Unread</div>
-                    <div class="chip">Mentions</div>
-                </div>
-                
-                <div class="task-section">
-                    <div class="task-section-header">
-                        <span class="task-section-title overdue">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#DC2626">
-                                <circle cx="12" cy="12" r="12"/>
-                            </svg>
-                            Overdue
-                        </span>
-                        <span class="task-count">2</span>
-                    </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Follow up with ross thomas</div>
-                            <div class="task-meta">Due: Jan 28 (2 days ago) • Unassigned</div>
-                        </div>
-                    </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Call back andrea</div>
-                            <div class="task-meta">Due: Jan 27 (3 days ago) • Ange</div>
-                        </div>
+                <div class="notifications-header-row">
+                    <div class="page-title" style="padding: 16px 0 8px;">Notifications</div>
+                    <div class="notifications-actions">
+                        <span class="mark-read-link">Mark all as read</span>
+                        <svg viewBox="0 0 256 256" fill="#6B7280" width="20" height="20"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Z"/></svg>
                     </div>
                 </div>
                 
-                <div class="task-section">
-                    <div class="task-section-header">
-                        <span class="task-section-title today">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#D97706">
-                                <circle cx="12" cy="12" r="12"/>
-                            </svg>
-                            Today
-                        </span>
-                        <span class="task-count">2</span>
-                    </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Confirm appointment - Laura Guffey</div>
-                            <div class="task-meta">Feb 5 appointment • Martha</div>
-                        </div>
-                    </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Return call - simpson linda</div>
-                            <div class="task-meta">Missed call this morning • Unassigned</div>
-                        </div>
-                    </div>
+                <div class="notification-tabs">
+                    <div class="notification-tab active">All</div>
+                    <div class="notification-tab">Unread <span class="tab-badge">12</span></div>
                 </div>
                 
-                <div class="task-section">
-                    <div class="task-section-header">
-                        <span class="task-section-title upcoming">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#059669">
-                                <circle cx="12" cy="12" r="12"/>
-                            </svg>
-                            Upcoming
-                        </span>
-                        <span class="task-count">3</span>
-                    </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Follow up - new patient inquiry</div>
-                            <div class="task-meta">Due: Feb 1 • Carla</div>
+                <div class="notification-list">
+                    <div class="notification-card">
+                        <div class="notification-indicator"></div>
+                        <div class="notification-content">
+                            <div class="notification-header-row">
+                                <div class="notification-title">New Call from <span class="avatar-inline">KB</span> <strong>Katie Basile</strong></div>
+                                <div class="notification-time">Jan 20, 07:24 pm</div>
+                            </div>
+                            <div class="notification-tags">
+                                <span class="tag">New Patient</span>
+                                <span class="tag needs-action">Appointment Not Scheduled</span>
+                                <span class="tag">Callback</span>
+                            </div>
+                            <div class="notification-summary">Katie Basile called to cancel her appointment scheduled for the upcoming Wednesday. She mentioned that she had left a message about the cancellation but received a text message notification...</div>
                         </div>
                     </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Send insurance verification request</div>
-                            <div class="task-meta">Due: Feb 2 • Martha</div>
+                    
+                    <div class="notification-card">
+                        <div class="notification-indicator unread"></div>
+                        <div class="notification-content">
+                            <div class="notification-header-row">
+                                <div class="notification-title">Missed Call from <strong>(570) 575-7175</strong></div>
+                                <div class="notification-time">Jan 20, 07:24 pm</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="task-item">
-                        <div class="task-checkbox"></div>
-                        <div class="task-content">
-                            <div class="task-title">Review monthly marketing report</div>
-                            <div class="task-meta">Due: Feb 3 • Ryan</div>
+                    
+                    <div class="notification-card">
+                        <div class="notification-indicator"></div>
+                        <div class="notification-content">
+                            <div class="notification-header-row">
+                                <div class="notification-title">New Call from <span class="avatar-inline">KB</span> <strong>Katie Basile</strong> <span class="more-people">+5 People</span></div>
+                                <div class="notification-time">Jan 20, 07:24 pm</div>
+                            </div>
+                            <div class="notification-tags">
+                                <span class="tag">New Patient</span>
+                                <span class="tag needs-action">Appointment Not Scheduled</span>
+                                <span class="tag">Insurance: State / HMO</span>
+                                <span class="tag">Callback</span>
+                            </div>
+                            <div class="notification-summary">The caller intended to book an appointment for a toothache but did not complete the process because the dental office does not accept their insurance...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-card">
+                        <div class="notification-indicator"></div>
+                        <div class="notification-content">
+                            <div class="notification-header-row">
+                                <div class="notification-title">Voicemail from <strong>(570) 575-7175</strong></div>
+                                <div class="notification-time">Jan 20, 07:24 pm</div>
+                            </div>
+                            <div class="notification-tags">
+                                <span class="tag">New Patient</span>
+                                <span class="tag">Voicemail</span>
+                                <span class="tag">Missed Call</span>
+                            </div>
+                            <div class="notification-summary">The caller intended to book an appointment for a toothache but did not complete the process because the dental office does not accept their insurance...</div>
                         </div>
                     </div>
                 </div>

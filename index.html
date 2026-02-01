@@ -262,7 +262,7 @@
         
         /* Search Bar */
         .search-bar {
-            margin: 0 20px 16px;
+            margin: 12px 20px;
             padding: 12px 16px;
             background: #F9FAFB;
             border: 1px solid #E5E7EB;
@@ -278,6 +278,37 @@
             width: 20px;
             height: 20px;
             color: #9CA3AF;
+            flex-shrink: 0;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #111827;
+            outline: none;
+        }
+        
+        .search-bar input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .search-clear {
+            font-size: 20px;
+            color: #9CA3AF;
+            cursor: pointer;
+            display: none;
+            line-height: 1;
+        }
+        
+        .search-clear.visible {
+            display: block;
+        }
+        
+        .view-tabs.search-active {
+            opacity: 0.4;
+            pointer-events: none;
         }
         
         /* Filter Chips */
@@ -1477,19 +1508,20 @@
             </div>
             
             <div class="screen-content">
-                <div class="view-tabs">
-                    <div class="view-tab">All contacts</div>
-                    <div class="view-tab active">Active Leads</div>
-                    <div class="view-tab">Scheduled</div>
-                    <div class="view-tab view-tab-add">+ Add View</div>
-                </div>
-                
-                <div class="search-bar">
+                <div class="search-bar" id="contacts-search-bar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
-                    Search contacts...
+                    <input type="text" id="contacts-search-input" placeholder="Search all contacts..." oninput="searchContacts(this.value)">
+                    <span class="search-clear" id="contacts-search-clear" onclick="clearContactSearch()">&times;</span>
+                </div>
+                
+                <div class="view-tabs" id="contacts-view-tabs">
+                    <div class="view-tab">All contacts</div>
+                    <div class="view-tab active">Active Leads</div>
+                    <div class="view-tab">Scheduled</div>
+                    <div class="view-tab view-tab-add">+ Add View</div>
                 </div>
                 
                 <div class="results-bar">
@@ -2414,6 +2446,95 @@
 
         // Initial render for contacts (Active Leads is default)
         renderContacts('Active Leads');
+        
+        // Get all contacts for search (flattened from all views)
+        function getAllContacts() {
+            const all = [];
+            Object.values(contactsData).forEach(view => {
+                view.groups.forEach(group => {
+                    group.contacts.forEach(contact => {
+                        // Avoid duplicates by name
+                        if (!all.find(c => c.name === contact.name)) {
+                            all.push({...contact, groupLabel: group.label});
+                        }
+                    });
+                });
+            });
+            return all;
+        }
+        
+        // Search contacts
+        function searchContacts(query) {
+            const clearBtn = document.getElementById('contacts-search-clear');
+            const viewTabs = document.getElementById('contacts-view-tabs');
+            const container = document.getElementById('contacts-list-container');
+            const countsEl = document.getElementById('contacts-results-count');
+            
+            if (!query.trim()) {
+                // Clear search - restore tab view
+                clearBtn.classList.remove('visible');
+                viewTabs.classList.remove('search-active');
+                const activeTab = viewTabs.querySelector('.view-tab.active');
+                renderContacts(activeTab ? activeTab.textContent : 'Active Leads');
+                return;
+            }
+            
+            // Show clear button, dim tabs
+            clearBtn.classList.add('visible');
+            viewTabs.classList.add('search-active');
+            
+            // Filter all contacts
+            const allContacts = getAllContacts();
+            const q = query.toLowerCase();
+            const results = allContacts.filter(c => 
+                c.name.toLowerCase().includes(q) || 
+                c.lifecycle.toLowerCase().includes(q) ||
+                (c.tag && c.tag.toLowerCase().includes(q))
+            );
+            
+            // Update count
+            if (countsEl) countsEl.textContent = results.length + ' results';
+            
+            // Render results
+            if (results.length === 0) {
+                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">No contacts found for "${query}"</div>`;
+                return;
+            }
+            
+            let html = `<div class="date-group">Search Results</div>`;
+            results.forEach(contact => {
+                const tagHtml = contact.tag 
+                    ? `<div class="contact-meta"><span class="tag ${contact.tagType || ''}">${contact.tag}</span></div>` 
+                    : '';
+                html += `
+                    <div class="contact-card" onclick="navigateTo('${contact.detail}')">
+                        <div class="contact-header">
+                            <div class="contact-type">
+                                <div class="avatar">${contact.initial}</div>
+                                <div>
+                                    <div class="contact-name">${contact.name}</div>
+                                    <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                </div>
+                            </div>
+                            <div class="contact-datetime">
+                                <div class="contact-time">${contact.time}</div>
+                                <div class="contact-date">${contact.date}</div>
+                            </div>
+                        </div>
+                        ${tagHtml}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        
+        // Clear search
+        function clearContactSearch() {
+            const input = document.getElementById('contacts-search-input');
+            input.value = '';
+            searchContacts('');
+            input.focus();
+        }
 
         // Generic view tab handling for other screens (activities)
         document.querySelectorAll('.view-tab').forEach(tab => {

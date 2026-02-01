@@ -1476,7 +1476,7 @@
                 </div>
                 
                 <div class="results-bar">
-                    <span class="results-count">45 results</span>
+                    <span class="results-count" id="contacts-results-count">45 results</span>
                     <span class="results-sort">
                         Sorted by Create date
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2323,6 +2323,15 @@
                 const parent = this.parentElement;
                 parent.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Update contacts results count based on tab
+                const tabText = this.textContent;
+                const countsEl = document.getElementById('contacts-results-count');
+                if (countsEl) {
+                    if (tabText === 'All contacts') countsEl.textContent = '145 results';
+                    else if (tabText === 'Active Leads') countsEl.textContent = '45 results';
+                    else if (tabText === 'Scheduled') countsEl.textContent = '36 results';
+                }
             });
         });
     </script>

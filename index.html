@@ -565,10 +565,27 @@
             border-bottom: 1px solid #F3F4F6;
             cursor: pointer;
             transition: background 0.15s;
+            position: relative;
         }
         
         .contact-card:active {
             background: #F9FAFB;
+        }
+        
+        .contact-card.unread::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #3B82F6;
+            border-radius: 50%;
+        }
+        
+        .contact-card.unread {
+            padding-left: 28px;
         }
         
         .avatar {
@@ -1832,7 +1849,7 @@
                     <div class="view-tab">Unread</div>
                 </div>
                 
-                <div class="contact-card" onclick="navigateTo('activity-detail')">
+                <div class="contact-card unread" onclick="markReadAndNavigate(this, 'activity-detail')">
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar">KB</div>
@@ -1853,7 +1870,7 @@
                     <div class="notification-summary">Katie Basile called to cancel her appointment scheduled for the upcoming Wednesday. She mentioned that she had left a message about the cancellation...</div>
                 </div>
                 
-                <div class="contact-card" onclick="navigateTo('activity-detail-missed')">
+                <div class="contact-card unread" onclick="markReadAndNavigate(this, 'activity-detail-missed')">
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar" style="background: #FEE2E2; color: #DC2626;">
@@ -1871,7 +1888,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-card" onclick="navigateTo('activity-detail')">
+                <div class="contact-card" onclick="markReadAndNavigate(this, 'activity-detail')">
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar">KB</div>
@@ -1892,7 +1909,7 @@
                     <div class="notification-summary">The caller intended to book an appointment for a toothache but did not complete the process because the dental office does not accept their insurance...</div>
                 </div>
                 
-                <div class="contact-card" onclick="navigateTo('activity-detail')">
+                <div class="contact-card unread" onclick="markReadAndNavigate(this, 'activity-detail')">
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar" style="background: #DBEAFE; color: #2563EB;">
@@ -2283,6 +2300,12 @@
             }, 300);
             
             currentScreen = screen;
+        }
+        
+        // Mark notification as read and navigate
+        function markReadAndNavigate(element, screen) {
+            element.classList.remove('unread');
+            navigateTo(screen);
         }
 
         // Go back

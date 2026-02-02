@@ -27,7 +27,7 @@
             max-width: 430px;
             margin: 0 auto;
             height: 100%;
-            background: #FAFAF9;
+            background: #FFFFFF;
             position: relative;
             overflow: hidden;
         }
@@ -35,12 +35,12 @@
         /* Safe area handling for iOS */
         .safe-top {
             height: env(safe-area-inset-top, 0px);
-            background: #FAFAF9;
+            background: #FFFFFF;
         }
         
         .safe-bottom {
             height: env(safe-area-inset-bottom, 0px);
-            background: #FAFAF9;
+            background: #FFFFFF;
         }
         
         /* Screen Management */
@@ -50,7 +50,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: #FAFAF9;
+            background: #FFFFFF;
             display: none;
             flex-direction: column;
         }
@@ -80,8 +80,8 @@
         /* Header Styles */
         .header {
             padding: 12px 20px;
-            background: #FAFAF9;
-            border-bottom: 0.5px solid #EBEBEB;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E7EB;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -106,13 +106,13 @@
         
         .header-title {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .header-workspace {
             font-size: 17px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -122,13 +122,13 @@
         .header-action {
             font-size: 24px;
             cursor: pointer;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .header-search-icon {
             padding: 8px;
             cursor: pointer;
-            color: #52525B;
+            color: #374151;
         }
         
         .header-search-icon:active {
@@ -143,7 +143,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             padding: 10px 14px;
             border-radius: 10px;
             flex: 1;
@@ -154,12 +154,12 @@
             border: none;
             background: transparent;
             font-size: 16px;
-            color: #27272A;
+            color: #111827;
             outline: none;
         }
         
         .header-search-expanded input::placeholder {
-            color: #A1A1AA;
+            color: #9CA3AF;
         }
         
         .search-cancel {
@@ -182,13 +182,13 @@
         .page-title {
             font-size: 28px;
             font-weight: 700;
-            color: #27272A;
+            color: #111827;
             padding: 16px 20px 8px;
         }
         
         .page-subtitle {
             font-size: 14px;
-            color: #71717A;
+            color: #6B7280;
             padding: 0 20px 16px;
         }
         
@@ -210,7 +210,7 @@
             padding: 8px 14px;
             font-size: 14px;
             font-weight: 500;
-            color: #71717A;
+            color: #6B7280;
             cursor: pointer;
             border-radius: 18px;
             white-space: nowrap;
@@ -224,13 +224,13 @@
         }
         
         .view-tab.active {
-            background: #EBEBEB;
-            color: #27272A;
+            background: #E5E7EB;
+            color: #111827;
             font-weight: 600;
         }
         
         .view-tab-add {
-            color: #A1A1AA;
+            color: #9CA3AF;
         }
         
         /* Filter Dropdowns */
@@ -252,24 +252,24 @@
             align-items: center;
             gap: 6px;
             padding: 8px 12px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
-            color: #52525B;
+            color: #374151;
             cursor: pointer;
             white-space: nowrap;
             flex-shrink: 0;
         }
         
         .filter-dropdown:active {
-            background: #EBEBEB;
+            background: #E5E7EB;
         }
         
         .filter-dropdown svg {
             width: 14px;
             height: 14px;
-            color: #71717A;
+            color: #6B7280;
         }
         
         /* Results Bar */
@@ -279,7 +279,7 @@
             align-items: center;
             padding: 12px 20px;
             font-size: 14px;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .results-count {
@@ -303,7 +303,7 @@
             padding: 8px 20px;
             font-size: 13px;
             font-weight: 500;
-            color: #71717A;
+            color: #6B7280;
             background: #F9FAFB;
         }
         
@@ -312,19 +312,19 @@
             margin: 12px 20px;
             padding: 12px 16px;
             background: #F9FAFB;
-            border: 0.5px solid #EBEBEB;
+            border: 1px solid #E5E7EB;
             border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #A1A1AA;
+            color: #9CA3AF;
             font-size: 16px;
         }
         
         .search-bar svg {
             width: 20px;
             height: 20px;
-            color: #A1A1AA;
+            color: #9CA3AF;
             flex-shrink: 0;
         }
         
@@ -333,17 +333,17 @@
             border: none;
             background: transparent;
             font-size: 16px;
-            color: #27272A;
+            color: #111827;
             outline: none;
         }
         
         .search-bar input::placeholder {
-            color: #A1A1AA;
+            color: #9CA3AF;
         }
         
         .search-clear {
             font-size: 20px;
-            color: #A1A1AA;
+            color: #9CA3AF;
             cursor: pointer;
             display: none;
             line-height: 1;
@@ -372,11 +372,11 @@
         
         .chip {
             padding: 10px 18px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
-            color: #52525B;
+            color: #374151;
             white-space: nowrap;
             cursor: pointer;
             transition: all 0.2s;
@@ -396,7 +396,7 @@
             padding: 14px 20px;
             font-size: 13px;
             font-weight: 600;
-            color: #71717A;
+            color: #6B7280;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             background: #F9FAFB;
@@ -416,7 +416,7 @@
         /* Activity Card */
         .activity-card {
             padding: 16px 20px;
-            border-bottom: 0.5px solid #F5F5F4;
+            border-bottom: 1px solid #F3F4F6;
             cursor: pointer;
             transition: background 0.15s;
         }
@@ -441,7 +441,7 @@
         .activity-icon {
             width: 40px;
             height: 40px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -466,18 +466,18 @@
         .activity-title {
             font-size: 16px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
         }
         
         .activity-name {
             font-size: 14px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 2px;
         }
         
         .activity-time {
             font-size: 14px;
-            color: #A1A1AA;
+            color: #9CA3AF;
         }
         
         .activity-meta {
@@ -490,11 +490,11 @@
         /* Tags */
         .tag {
             padding: 5px 10px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             border-radius: 6px;
             font-size: 12px;
             font-weight: 500;
-            color: #52525B;
+            color: #374151;
         }
         
         .tag.needs-action {
@@ -526,7 +526,7 @@
         .play-btn {
             width: 32px;
             height: 32px;
-            background: #27272A;
+            background: #111827;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -554,7 +554,7 @@
         
         .duration {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
             font-weight: 500;
             flex-shrink: 0;
         }
@@ -562,7 +562,7 @@
         /* Contact Card */
         .contact-card {
             padding: 16px 20px;
-            border-bottom: 0.5px solid #F5F5F4;
+            border-bottom: 1px solid #F3F4F6;
             cursor: pointer;
             transition: background 0.15s;
             position: relative;
@@ -623,12 +623,12 @@
         .contact-name {
             font-size: 16px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
         }
         
         .contact-lifecycle {
             font-size: 14px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 2px;
         }
         
@@ -652,12 +652,12 @@
         .contact-time {
             font-size: 14px;
             font-weight: 500;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .contact-date {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 2px;
         }
         
@@ -679,12 +679,12 @@
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            color: #27272A;
+            color: #111827;
         }
         
         .stat-label {
             font-size: 12px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 4px;
         }
         
@@ -694,8 +694,8 @@
             justify-content: space-around;
             align-items: flex-start;
             padding: 10px 0 8px;
-            background: #FAFAF9;
-            border-top: 1px solid #EBEBEB;
+            background: #FFFFFF;
+            border-top: 1px solid #E5E7EB;
             flex-shrink: 0;
         }
         
@@ -704,7 +704,7 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            color: #A1A1AA;
+            color: #9CA3AF;
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
@@ -717,7 +717,7 @@
         }
         
         .nav-item.active {
-            color: #27272A;
+            color: #111827;
         }
         
         .nav-icon {
@@ -737,33 +737,33 @@
         .detail-header {
             padding: 24px 20px;
             text-align: center;
-            border-bottom: 0.5px solid #EBEBEB;
+            border-bottom: 1px solid #E5E7EB;
         }
         
         .detail-avatar {
             width: 72px;
             height: 72px;
-            background: linear-gradient(135deg, #EBEBEB 0%, #D1D5DB 100%);
+            background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
             font-weight: 600;
-            color: #52525B;
+            color: #374151;
             margin: 0 auto 14px;
         }
         
         .detail-name {
             font-size: 22px;
             font-weight: 700;
-            color: #27272A;
+            color: #111827;
             margin-bottom: 6px;
         }
         
         .detail-subtitle {
             font-size: 15px;
-            color: #71717A;
+            color: #6B7280;
             margin-bottom: 18px;
         }
         
@@ -775,11 +775,11 @@
         
         .action-btn {
             padding: 12px 28px;
-            border: 0.5px solid #EBEBEB;
+            border: 1px solid #E5E7EB;
             border-radius: 12px;
             font-size: 15px;
             font-weight: 500;
-            color: #52525B;
+            color: #374151;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -805,7 +805,7 @@
         .info-title {
             font-size: 13px;
             font-weight: 600;
-            color: #71717A;
+            color: #6B7280;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 14px;
@@ -816,18 +816,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 0.5px solid #F5F5F4;
+            border-bottom: 1px solid #F3F4F6;
         }
         
         .info-label {
             font-size: 15px;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .info-value {
             font-size: 15px;
             font-weight: 500;
-            color: #27272A;
+            color: #111827;
         }
         
         .info-value.lead {
@@ -850,7 +850,7 @@
         }
         
         .ai-badge {
-            background: #27272A;
+            background: #111827;
             color: white;
             padding: 3px 8px;
             border-radius: 5px;
@@ -861,7 +861,7 @@
         .ai-label {
             font-size: 14px;
             font-weight: 600;
-            color: #52525B;
+            color: #374151;
         }
         
         .ai-content {
@@ -882,29 +882,29 @@
         .notifications-header-row { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .notifications-actions { display: flex; align-items: center; gap: 12px; }
         .mark-read-link { color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer; }
-        .notification-tabs { display: flex; gap: 0; padding: 0 20px 12px; border-bottom: 0.5px solid #EBEBEB; }
-        .notification-tab { padding: 8px 16px; font-size: 14px; color: #71717A; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-        .notification-tab.active { color: #27272A; font-weight: 600; border-bottom: 2px solid #27272A; }
-        .tab-badge { background: #EBEBEB; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin-left: 4px; }
+        .notification-tabs { display: flex; gap: 0; padding: 0 20px 12px; border-bottom: 1px solid #E5E7EB; }
+        .notification-tab { padding: 8px 16px; font-size: 14px; color: #6B7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+        .notification-tab.active { color: #111827; font-weight: 600; border-bottom: 2px solid #111827; }
+        .tab-badge { background: #E5E7EB; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin-left: 4px; }
         .notification-list { padding: 0; }
-        .notification-card { display: flex; gap: 12px; padding: 16px 20px; border-bottom: 0.5px solid #F5F5F4; }
+        .notification-card { display: flex; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #F3F4F6; }
         .notification-indicator { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #D1D5DB; margin-top: 6px; flex-shrink: 0; }
         .notification-indicator.unread { background: #3B82F6; border-color: #3B82F6; }
         .notification-content { flex: 1; min-width: 0; }
         .notification-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-        .notification-title { font-size: 14px; color: #52525B; }
-        .notification-title strong { color: #27272A; }
-        .notification-time { font-size: 13px; color: #A1A1AA; white-space: nowrap; }
-        .avatar-inline { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #EBEBEB; border-radius: 4px; font-size: 10px; font-weight: 600; color: #52525B; margin: 0 2px; vertical-align: middle; }
-        .more-people { color: #71717A; font-size: 13px; }
+        .notification-title { font-size: 14px; color: #374151; }
+        .notification-title strong { color: #111827; }
+        .notification-time { font-size: 13px; color: #9CA3AF; white-space: nowrap; }
+        .avatar-inline { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #E5E7EB; border-radius: 4px; font-size: 10px; font-weight: 600; color: #374151; margin: 0 2px; vertical-align: middle; }
+        .more-people { color: #6B7280; font-size: 13px; }
         .notification-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-        .notification-summary { font-size: 14px; color: #71717A; line-height: 1.5; background: #F9FAFB; padding: 12px; border-radius: 8px; }
+        .notification-summary { font-size: 14px; color: #6B7280; line-height: 1.5; background: #F9FAFB; padding: 12px; border-radius: 8px; }
         
         /* Task Styles */
         .task-section {
             margin: 16px 20px;
-            background: #FAFAF9;
-            border: 0.5px solid #EBEBEB;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
             border-radius: 14px;
             overflow: hidden;
         }
@@ -915,13 +915,13 @@
             justify-content: space-between;
             align-items: center;
             background: #FAFAFA;
-            border-bottom: 0.5px solid #EBEBEB;
+            border-bottom: 1px solid #E5E7EB;
         }
         
         .task-section-title {
             font-size: 15px;
             font-weight: 600;
-            color: #52525B;
+            color: #374151;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -932,17 +932,17 @@
         .task-section-title.upcoming { color: #059669; }
         
         .task-count {
-            background: #EBEBEB;
+            background: #E5E7EB;
             padding: 3px 10px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
-            color: #71717A;
+            color: #6B7280;
         }
         
         .task-item {
             padding: 14px 18px;
-            border-bottom: 0.5px solid #F5F5F4;
+            border-bottom: 1px solid #F3F4F6;
             display: flex;
             gap: 14px;
             align-items: flex-start;
@@ -974,13 +974,13 @@
         .task-title {
             font-size: 15px;
             font-weight: 500;
-            color: #27272A;
+            color: #111827;
             margin-bottom: 4px;
         }
         
         .task-meta {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
         }
         
         /* KPI Grid */
@@ -992,22 +992,22 @@
         }
         
         .kpi-card {
-            background: #FAFAF9;
-            border: 0.5px solid #EBEBEB;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
             border-radius: 14px;
             padding: 18px;
         }
         
         .kpi-label {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
             margin-bottom: 8px;
         }
         
         .kpi-value {
             font-size: 26px;
             font-weight: 700;
-            color: #27272A;
+            color: #111827;
         }
         
         .kpi-change {
@@ -1025,7 +1025,7 @@
         .funnel-title {
             font-size: 15px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
             margin-bottom: 18px;
         }
         
@@ -1051,19 +1051,19 @@
         
         .funnel-name {
             font-size: 14px;
-            color: #52525B;
+            color: #374151;
             font-weight: 500;
         }
         
         .funnel-value {
             font-size: 14px;
-            color: #27272A;
+            color: #111827;
             font-weight: 600;
         }
         
         .funnel-cost {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 2px;
         }
         
@@ -1086,7 +1086,7 @@
         }
         
         .modal-content {
-            background: #FAFAF9;
+            background: #FFFFFF;
             border-radius: 20px 20px 0 0;
             width: 100%;
             max-width: 430px;
@@ -1102,7 +1102,7 @@
         
         .modal-header {
             padding: 20px;
-            border-bottom: 0.5px solid #EBEBEB;
+            border-bottom: 1px solid #E5E7EB;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1111,25 +1111,25 @@
         .modal-title {
             font-size: 18px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
         }
         
         .modal-close {
             font-size: 28px;
-            color: #A1A1AA;
+            color: #9CA3AF;
             cursor: pointer;
             line-height: 1;
         }
         
         .workspace-search {
             padding: 12px 20px;
-            border-bottom: 0.5px solid #EBEBEB;
+            border-bottom: 1px solid #E5E7EB;
         }
         
         .workspace-search input {
             width: 100%;
             padding: 12px 16px;
-            border: 0.5px solid #EBEBEB;
+            border: 1px solid #E5E7EB;
             border-radius: 10px;
             font-size: 16px;
             background: #F9FAFB;
@@ -1139,11 +1139,11 @@
         
         .workspace-search input:focus {
             border-color: #3B82F6;
-            background: #FAFAF9;
+            background: #FFFFFF;
         }
         
         .workspace-search input::placeholder {
-            color: #A1A1AA;
+            color: #9CA3AF;
         }
         
         .workspace-list {
@@ -1158,7 +1158,7 @@
         .workspace-no-results {
             padding: 40px 20px;
             text-align: center;
-            color: #A1A1AA;
+            color: #9CA3AF;
             font-size: 15px;
             display: none;
         }
@@ -1169,7 +1169,7 @@
         
         .workspace-item {
             padding: 16px 20px;
-            border-bottom: 0.5px solid #F5F5F4;
+            border-bottom: 1px solid #F3F4F6;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -1188,7 +1188,7 @@
         .workspace-name {
             font-size: 16px;
             font-weight: 500;
-            color: #27272A;
+            color: #111827;
         }
         
         .workspace-check {
@@ -1223,7 +1223,7 @@
         
         .menu-item {
             padding: 16px;
-            border: 0.5px solid #EBEBEB;
+            border: 1px solid #E5E7EB;
             border-radius: 14px;
             margin-bottom: 12px;
             display: flex;
@@ -1241,7 +1241,7 @@
         .menu-icon {
             width: 44px;
             height: 44px;
-            background: #F5F5F4;
+            background: #F3F4F6;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -1251,7 +1251,7 @@
         .menu-icon svg {
             width: 22px;
             height: 22px;
-            color: #52525B;
+            color: #374151;
         }
         
         .menu-text {
@@ -1261,12 +1261,12 @@
         .menu-title {
             font-size: 16px;
             font-weight: 600;
-            color: #27272A;
+            color: #111827;
         }
         
         .menu-desc {
             font-size: 13px;
-            color: #71717A;
+            color: #6B7280;
             margin-top: 2px;
         }
         
@@ -1299,7 +1299,7 @@
             
             <div class="header search-header" id="activities-search-header" style="display: none;">
                 <div class="header-search-expanded">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" width="20" height="20">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" width="20" height="20">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
@@ -1384,7 +1384,7 @@
                     </div>
                     <div class="activity-meta">
                         <span class="tag needs-action">Needs Action</span>
-                        <span style="color: #71717A; font-size: 13px;">(360) 480-9662</span>
+                        <span style="color: #6B7280; font-size: 13px;">(360) 480-9662</span>
                     </div>
                     <div class="audio-player" onclick="event.stopPropagation()">
                         <div class="play-btn">
@@ -1463,13 +1463,21 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -1505,8 +1513,8 @@
                             </svg>
                         </div>
                         <div>
-                            <div style="font-size: 20px; font-weight: 600; color: #27272A;">Inbound Call</div>
-                            <div style="font-size: 15px; color: #71717A;">Today at 4:07 PM</div>
+                            <div style="font-size: 20px; font-weight: 600; color: #111827;">Inbound Call</div>
+                            <div style="font-size: 15px; color: #6B7280;">Today at 4:07 PM</div>
                         </div>
                     </div>
                     <span class="tag scheduled">Appointment Rescheduled</span>
@@ -1521,10 +1529,10 @@
                         <div class="duration">00:00 / 01:28</div>
                     </div>
                     
-                    <div style="display: flex; gap: 0; border-bottom: 0.5px solid #EBEBEB;">
+                    <div style="display: flex; gap: 0; border-bottom: 1px solid #E5E7EB;">
                         <div style="padding: 14px 18px; border-bottom: 2px solid #3B82F6; font-weight: 600; color: #3B82F6; font-size: 15px;">Summary</div>
-                        <div style="padding: 14px 18px; color: #71717A; font-size: 15px;">Transcript</div>
-                        <div style="padding: 14px 18px; color: #71717A; font-size: 15px;">Details</div>
+                        <div style="padding: 14px 18px; color: #6B7280; font-size: 15px;">Transcript</div>
+                        <div style="padding: 14px 18px; color: #6B7280; font-size: 15px;">Details</div>
                     </div>
                 </div>
                 
@@ -1552,7 +1560,7 @@
                 
                 <div class="info-section">
                     <div class="info-title">Identified Contact</div>
-                    <div class="contact-card" style="padding: 14px; border: 0.5px solid #EBEBEB; border-radius: 14px; margin: 0;" onclick="navigateTo('contact-detail')">
+                    <div class="contact-card" style="padding: 14px; border: 1px solid #E5E7EB; border-radius: 14px; margin: 0;" onclick="navigateTo('contact-detail')">
                         <div class="avatar">L</div>
                         <div class="contact-info">
                             <div class="contact-name">Laura Guffey</div>
@@ -1581,13 +1589,21 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -1623,7 +1639,7 @@
             
             <div class="header search-header" id="contacts-search-header" style="display: none;">
                 <div class="header-search-expanded">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" width="20" height="20">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" width="20" height="20">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
@@ -1674,13 +1690,21 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -1704,19 +1728,19 @@
                     </svg>
                     Back
                 </div>
-                <div style="font-size: 14px; color: #71717A;">Affordable Family Dental</div>
+                <div style="font-size: 14px; color: #6B7280;">Affordable Family Dental</div>
             </div>
             
             <div class="screen-content">
                 <!-- Contact Header -->
-                <div style="padding: 16px 20px 20px;">
+                <div style="padding: 16px 20px 24px;">
                     <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
                         <div class="avatar" style="width: 56px; height: 56px; font-size: 20px;">S</div>
                         <div style="flex: 1;">
-                            <div style="font-size: 22px; font-weight: 700; color: #27272A;">Simpson Linda</div>
-                            <div style="font-size: 14px; color: #71717A;">Lead • Needs Action</div>
+                            <div style="font-size: 22px; font-weight: 700; color: #111827;">Simpson Linda</div>
+                            <div style="font-size: 14px; color: #6B7280;">Lead • Needs Action</div>
                         </div>
-                        <div class="action-btn" style="padding: 6px 8px;">
+                        <div class="action-btn" style="padding: 6px;">
                             <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
                                 <circle cx="128" cy="64" r="16"/>
                                 <circle cx="128" cy="128" r="16"/>
@@ -1727,19 +1751,19 @@
                     
                     <!-- Action Buttons -->
                     <div style="display: flex; gap: 8px;">
-                        <div class="action-btn" style="flex: 1; justify-content: center; padding: 10px 8px; font-size: 13px; gap: 6px;">
+                        <div class="action-btn" style="padding: 8px 18px; font-size: 13px; gap: 6px;">
                             <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
-                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/>
+                                <path d="M224,128a8,8,0,0,1-8,8H67.31l34.35,34.34a8,8,0,0,1-11.32,11.32l-48-48a8,8,0,0,1,0-11.32l48-48a8,8,0,0,1,11.32,11.32L67.31,120H216A8,8,0,0,1,224,128Z"/>
                             </svg>
                             Follow Up
                         </div>
-                        <div class="action-btn" style="flex: 1; justify-content: center; padding: 10px 8px; font-size: 13px; gap: 6px;">
+                        <div class="action-btn" style="padding: 8px 18px; font-size: 13px; gap: 6px;">
                             <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
-                                <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/>
+                                <path d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"/>
                             </svg>
                             Task
                         </div>
-                        <div class="action-btn" style="flex: 1; justify-content: center; padding: 10px 8px; font-size: 13px; gap: 6px;">
+                        <div class="action-btn" style="padding: 8px 18px; font-size: 13px; gap: 6px;">
                             <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
                                 <path d="M222.36,158.46l-47.1-21.11-.12-.06a16,16,0,0,0-15.18,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.36,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/>
                             </svg>
@@ -1749,7 +1773,8 @@
                 </div>
                 
                 <!-- Tags -->
-                <div style="padding: 0 20px 16px;">
+                <div style="padding: 0 20px 24px;">
+                    <div class="info-title" style="margin-bottom: 10px;">Tags</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
                         <span class="tag">Missed Call</span>
                         <span style="color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer;">+ Add</span>
@@ -1757,11 +1782,11 @@
                 </div>
                 
                 <!-- Tabs: Details, Activities, Appointments, Transactions -->
-                <div class="view-tabs" style="padding: 0 20px 16px;">
+                <div class="view-tabs" style="padding: 0 20px 20px;">
                     <div class="view-tab active" onclick="showContactTab('details')">Details</div>
                     <div class="view-tab" onclick="showContactTab('activities')">Activities</div>
-                    <div class="view-tab" onclick="showContactTab('appointments')">Appts</div>
-                    <div class="view-tab" onclick="showContactTab('transactions')">Trans</div>
+                    <div class="view-tab" onclick="showContactTab('appointments')">Appointments</div>
+                    <div class="view-tab" onclick="showContactTab('transactions')">Transactions</div>
                 </div>
                 
                 <!-- Details Tab Content -->
@@ -1778,7 +1803,7 @@
                         </div>
                         <div class="info-row">
                             <span class="info-label">Lead Owner</span>
-                            <span class="info-value" style="color: #A1A1AA;">Select Lead Owner</span>
+                            <span class="info-value" style="color: #9CA3AF;">Select Lead Owner</span>
                         </div>
                         <div class="info-row">
                             <span class="info-label">Channel</span>
@@ -1790,7 +1815,7 @@
                         </div>
                         <div class="info-row">
                             <span class="info-label">Email</span>
-                            <span class="info-value" style="color: #A1A1AA;">—</span>
+                            <span class="info-value" style="color: #9CA3AF;">—</span>
                         </div>
                     </div>
                 </div>
@@ -1798,8 +1823,8 @@
                 <!-- Activities Tab Content -->
                 <div id="contact-tab-activities" class="contact-tab-content" style="display: none;">
                     <div style="padding: 0 20px 20px;">
-                        <div style="text-align: center; font-size: 13px; color: #A1A1AA; margin-bottom: 16px;">January 2026</div>
-                        <div class="activity-card" style="padding: 14px; border: 0.5px solid #EBEBEB; border-radius: 14px; margin: 0;" onclick="navigateTo('activity-detail')">
+                        <div style="text-align: center; font-size: 13px; color: #9CA3AF; margin-bottom: 16px;">January 2026</div>
+                        <div class="activity-card" style="padding: 14px; border: 1px solid #E5E7EB; border-radius: 14px; margin: 0;" onclick="navigateTo('activity-detail')">
                             <div class="activity-header" style="margin-bottom: 0;">
                                 <div class="activity-type">
                                     <div class="activity-icon missed">
@@ -1809,12 +1834,12 @@
                                     </div>
                                     <div>
                                         <div class="activity-title" style="font-size: 15px;">Inbound Call</div>
-                                        <div style="font-size: 13px; color: #71717A;"><span class="tag" style="font-size: 11px; padding: 2px 8px;">Missed Call</span></div>
+                                        <div style="font-size: 13px; color: #6B7280;"><span class="tag" style="font-size: 11px; padding: 2px 8px;">Missed Call</span></div>
                                     </div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div style="font-size: 13px; color: #71717A;">Jan 30, 2026</div>
-                                    <div style="font-size: 12px; color: #A1A1AA;">9:04 AM</div>
+                                    <div style="font-size: 13px; color: #6B7280;">Jan 30, 2026</div>
+                                    <div style="font-size: 12px; color: #9CA3AF;">9:04 AM</div>
                                 </div>
                             </div>
                         </div>
@@ -1823,14 +1848,14 @@
                 
                 <!-- Appointments Tab Content -->
                 <div id="contact-tab-appointments" class="contact-tab-content" style="display: none;">
-                    <div style="padding: 40px 20px; text-align: center; color: #A1A1AA;">
+                    <div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">
                         No appointments yet
                     </div>
                 </div>
                 
                 <!-- Transactions Tab Content -->
                 <div id="contact-tab-transactions" class="contact-tab-content" style="display: none;">
-                    <div style="padding: 40px 20px; text-align: center; color: #A1A1AA;">
+                    <div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">
                         No transactions yet
                     </div>
                 </div>
@@ -1853,13 +1878,192 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <circle cx="128" cy="64" r="16"/>
+                            <circle cx="128" cy="128" r="16"/>
+                            <circle cx="128" cy="192" r="16"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Screen -->
+        <div class="screen" id="screen-tasks">
+            <div class="header">
+                <div>
+                    <div class="header-title"><svg viewBox="0 0 700 119" height="14" fill="#212121"><path d="M209.07267,55.00834H194.74852V81.37387c0,6.845,4.944,6.97184,14.32415,6.46489v14.83077c-22.43672,2.5351-30.67612-3.92946-30.67612-21.29566V55.00834H167.36909V39.29015h11.02746V26.48752l16.352-4.9437V39.29015h14.32415Z"/><path d="M234.80342,50.19113c3.04238-8.11257,10.64766-12.16886,19.26752-12.16886V56.27589a19.03958,19.03958,0,0,0-13.4364,3.04205c-3.92947,2.66191-5.83112,6.97184-5.83112,13.05627v30.29532h-16.352V39.29015h16.352Z"/><path d="M306.1672,39.29015h16.352v63.37938h-16.352V95.19074c-4.944,6.21125-11.78839,9.25329-20.66189,9.25329-8.493,0-15.71786-3.16887-21.80262-9.63376A33.9841,33.9841,0,0,1,254.703,70.97984a33.67641,33.67641,0,0,1,8.99965-23.70394c6.08476-6.46489,13.30958-9.76025,21.80262-9.76025,8.8735,0,15.71785,3.042,20.66189,9.2533ZM288.54769,88.853A17.00421,17.00421,0,0,0,301.097,83.9093a17.48151,17.48151,0,0,0,5.07019-12.92946c0-5.197-1.648-9.50694-5.07019-12.80263a18.06477,18.06477,0,0,0-25.09864,0A17.39059,17.39059,0,0,0,271.055,70.97984a17.89244,17.89244,0,0,0,4.94337,12.92946A17.00421,17.00421,0,0,0,288.54769,88.853Z"/><path d="M340.391,94.81027A32.59354,32.59354,0,0,1,330.884,70.97984,32.59483,32.59483,0,0,1,340.391,47.14908c6.46456-6.46456,14.45031-9.63343,23.95725-9.63343,12.29568,0,23.197,6.33774,28.394,16.35163l-14.06984,8.2394c-2.53577-5.197-7.98642-8.49271-14.451-8.49271-9.76059,0-16.9854,7.22516-16.9854,17.36587a17.32755,17.32755,0,0,0,4.81654,12.4225,16.52563,16.52563,0,0,0,12.16886,4.81655c6.59138,0,12.042-3.16887,14.57713-8.36588l14.19733,8.11257A32.51017,32.51017,0,0,1,364.34823,104.444C354.84129,104.444,346.85554,101.27516,340.391,94.81027Z"/><path d="M456.8812,102.66953H437.86732L414.79715,73.8954v28.77413h-16.352V13.9382h16.352v53.239l21.80262-27.887h19.52117L430.6425,70.59938Z"/><path d="M505.42981,39.29015h16.352v63.37938h-16.352V95.19074c-4.94337,6.21125-11.7884,9.25329-20.6619,9.25329-8.493,0-15.71785-3.16887-21.80262-9.63376a33.9841,33.9841,0,0,1-8.99965-23.83043,33.67641,33.67641,0,0,1,8.99965-23.70394c6.08477-6.46489,13.30958-9.76025,21.80262-9.76025,8.8735,0,15.71853,3.042,20.6619,9.2533ZM487.81029,88.853a17.00425,17.00425,0,0,0,12.54933-4.9437,17.48155,17.48155,0,0,0,5.07019-12.92946c0-5.197-1.648-9.50694-5.07019-12.80263a18.06479,18.06479,0,0,0-25.09865,0,17.39063,17.39063,0,0,0-4.94337,12.80263A17.89249,17.89249,0,0,0,475.261,83.9093,17.00423,17.00423,0,0,0,487.81029,88.853Z"/><path d="M592.131,47.2759c6.08477,6.4649,9.12648,14.32382,9.12648,23.70394s-3.04171,17.36587-9.12648,23.83043a28.59615,28.59615,0,0,1-21.80262,9.63376c-8.87283,0-15.71785-3.042-20.53507-9.25329v7.47879h-16.352V13.9382h16.352V46.76895c4.81722-6.21125,11.66224-9.2533,20.53507-9.2533A28.71916,28.71916,0,0,1,592.131,47.2759ZM567.286,88.853a17.0021,17.0021,0,0,0,12.54932-4.9437,17.47891,17.47891,0,0,0,5.07019-12.92946c0-5.197-1.64734-9.50694-5.07019-12.80263a18.06395,18.06395,0,0,0-25.098,0,17.38843,17.38843,0,0,0-4.944,12.80263,17.89018,17.89018,0,0,0,4.944,12.92946A17.00161,17.00161,0,0,0,567.286,88.853Z"/><path d="M609.62166,102.66953v-92.534h16.352v92.534Z"/><path d="M651.57822,77.69805c2.1553,7.98575,8.11257,11.91521,17.87315,11.91521,6.21092,0,11.02813-2.15463,14.19734-6.33774l13.18276,7.60529c-6.21159,9-15.46489,13.56322-27.63374,13.56322-10.52085,0-18.88706-3.16887-25.2248-9.50694q-9.50661-9.50659-9.50694-23.95725c0-9.50694,3.1692-17.49269,9.38012-23.83076,6.21091-6.46456,14.32349-9.63343,24.08407-9.63343,9.2533,0,16.98607,3.16887,22.94334,9.63343C696.95829,53.614,700,61.4729,700,70.97984a42.77795,42.77795,0,0,1-.63344,6.71821Zm32.07049-12.67581c-1.90166-8.61953-8.2394-12.80263-15.71853-12.80263-8.746,0-14.70395,4.69006-16.60561,12.80263Z"/><path d="M65.58736.45625,0,66.0433,13.71763,79.76093a16.74846,16.74846,0,0,0,23.68585.00005L65.46831,51.69637,93.53283,79.76088a16.74846,16.74846,0,0,0,23.6859,0l13.83663-13.83663Z"/><circle cx="65.46816" cy="96.40428" r="22.13947"/></svg></div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace-tasks">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="primary-btn" style="font-size: 14px; padding: 8px 14px;">
+                    <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
+                        <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/>
+                    </svg>
+                    New
+                </div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Tasks</div>
+                
+                <div class="view-tabs">
+                    <div class="view-tab active">All Tasks</div>
+                    <div class="view-tab">My Tasks</div>
+                    <div class="view-tab">Completed</div>
+                </div>
+                
+                <!-- Overdue Section -->
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <div class="task-section-title overdue">
+                            <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
+                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
+                            </svg>
+                            Overdue
+                        </div>
+                        <span class="task-count">2</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Follow up with ross thomas</div>
+                            <div class="task-meta">Due: Jan 28 (4 days ago) · Unassigned</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Call back andrea</div>
+                            <div class="task-meta">Due: Jan 27 (5 days ago) · Ange</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Today Section -->
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <div class="task-section-title today">
+                            <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
+                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h56A8,8,0,0,1,192,128Z"/>
+                            </svg>
+                            Today
+                        </div>
+                        <span class="task-count">3</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Confirm appointment - Laura Guffey</div>
+                            <div class="task-meta">Feb 5 appt · Martha</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Return call - simpson linda</div>
+                            <div class="task-meta">Missed call this morning · Unassigned</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Review insurance docs</div>
+                            <div class="task-meta">New patient paperwork · Carla</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Section -->
+                <div class="task-section">
+                    <div class="task-section-header">
+                        <div class="task-section-title upcoming">
+                            <svg viewBox="0 0 256 256" fill="currentColor" width="16" height="16">
+                                <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H72v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V208Z"/>
+                            </svg>
+                            Upcoming
+                        </div>
+                        <span class="task-count">5</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Follow up - new patient inquiry</div>
+                            <div class="task-meta">Due: Feb 2 · Carla</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Send treatment plan - Mike Johnson</div>
+                            <div class="task-meta">Due: Feb 3 · Dr. Smith</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <div class="task-title">Schedule hygiene recall</div>
+                            <div class="task-meta">Due: Feb 5 · Martha</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M125.18,156.94a64,64,0,1,0-82.36,0,100.23,100.23,0,0,0-39.49,32,12,12,0,0,0,19.35,14.2,76,76,0,0,1,122.64,0,12,12,0,0,0,19.36-14.2A100.33,100.33,0,0,0,125.18,156.94ZM44,108a40,40,0,1,1,40,40A40,40,0,0,1,44,108Zm206.1,97.67a12,12,0,0,1-16.78-2.57A76.31,76.31,0,0,0,172,172a12,12,0,0,1,0-24,40,40,0,1,0-14.85-77.16,12,12,0,1,1-8.92-22.28,64,64,0,0,1,55.53,115.51,100.34,100.34,0,0,1,29.78,30.77A12,12,0,0,1,250.1,205.67Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
+                        </svg>
+                    </div>
+                    Activities
+                </div>
+                <div class="nav-item active" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -1926,7 +2130,7 @@
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar" style="background: #FEE2E2; color: #DC2626;">
-                                <svg viewBox="0 0 256 256" fill="currentColor" width="20" height="20"><path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/></svg>
+                                <svg viewBox="0 0 256 256" fill="currentColor" width="20" height="20"><path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/></svg>
                             </div>
                             <div>
                                 <div class="contact-name">Missed Call · (570) 575-7175</div>
@@ -1945,7 +2149,7 @@
                         <div class="contact-type">
                             <div class="avatar">KB</div>
                             <div>
-                                <div class="contact-name">New Call · Katie Basile <span style="color: #71717A; font-weight: 400;">+5</span></div>
+                                <div class="contact-name">New Call · Katie Basile <span style="color: #6B7280; font-weight: 400;">+5</span></div>
                                 <div class="contact-lifecycle">New Patient</div>
                             </div>
                         </div>
@@ -1965,7 +2169,7 @@
                     <div class="contact-header">
                         <div class="contact-type">
                             <div class="avatar" style="background: #DBEAFE; color: #2563EB;">
-                                <svg viewBox="0 0 256 256" fill="currentColor" width="20" height="20"><path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/></svg>
+                                <svg viewBox="0 0 256 256" fill="currentColor" width="20" height="20"><path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/></svg>
                             </div>
                             <div>
                                 <div class="contact-name">Voicemail · (570) 575-7175</div>
@@ -2002,13 +2206,21 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item active" onclick="switchTab('notifications')">
+                <div class="nav-item active" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -2041,28 +2253,28 @@
                 <div class="page-title">More</div>
                 
                 <div class="more-menu">
-                    <div class="menu-item" onclick="navigateTo('analytics')">
+                    <div class="menu-item">
                         <div class="menu-icon">
                             <svg viewBox="0 0 256 256" fill="currentColor">
-                                <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z"/>
+                                <path d="M160,104a32,32,0,1,1-32-32A32,32,0,0,1,160,104Zm70.63,97.61a8,8,0,0,1-6.62,12.39H32a8,8,0,0,1-6.63-12.39L64,142.68V104a64,64,0,0,1,128,0v38.68l38.63,58.93ZM86.63,200h82.74L128,136.31,86.63,200ZM184,104a56,56,0,0,0-112,0v38.68a8,8,0,0,1-1.37,4.47L48,180.31,66.63,200h0L128,119.69l61.37,80.31h0L208,180.31l-22.63-33.16A8,8,0,0,1,184,142.68V104Z"/>
                             </svg>
                         </div>
                         <div class="menu-text">
-                            <div class="menu-title">Marketing Analytics</div>
-                            <div class="menu-desc">ROI, funnel, and campaign performance</div>
+                            <div class="menu-title">Pipelines</div>
+                            <div class="menu-desc">Track leads through stages</div>
                         </div>
                         <span class="menu-arrow">›</span>
                     </div>
                     
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="navigateTo('notifications')">
                         <div class="menu-icon">
                             <svg viewBox="0 0 256 256" fill="currentColor">
-                                <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Zm16,72a8,8,0,0,1-8,8H72a8,8,0,0,1,0-16H184A8,8,0,0,1,192,160Z"/>
+                                <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
                             </svg>
                         </div>
                         <div class="menu-text">
-                            <div class="menu-title">Companies</div>
-                            <div class="menu-desc">Manage locations and practices</div>
+                            <div class="menu-title">Notifications</div>
+                            <div class="menu-desc">Call alerts and updates</div>
                         </div>
                         <span class="menu-arrow">›</span>
                     </div>
@@ -2112,13 +2324,21 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
-                    Notifications
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
                 </div>
                 <div class="nav-item active" onclick="switchTab('more')">
                     <div class="nav-icon">
@@ -2136,101 +2356,58 @@
         <!-- Analytics Screen -->
         <div class="screen" id="screen-analytics">
             <div class="header">
-                <div class="back-btn" onclick="goBack()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                    Back
+                <div>
+                    <div class="header-title"><svg viewBox="0 0 700 119" height="14" fill="#212121"><path d="M209.07267,55.00834H194.74852V81.37387c0,6.845,4.944,6.97184,14.32415,6.46489v14.83077c-22.43672,2.5351-30.67612-3.92946-30.67612-21.29566V55.00834H167.36909V39.29015h11.02746V26.48752l16.352-4.9437V39.29015h14.32415Z"/><path d="M234.80342,50.19113c3.04238-8.11257,10.64766-12.16886,19.26752-12.16886V56.27589a19.03958,19.03958,0,0,0-13.4364,3.04205c-3.92947,2.66191-5.83112,6.97184-5.83112,13.05627v30.29532h-16.352V39.29015h16.352Z"/><path d="M306.1672,39.29015h16.352v63.37938h-16.352V95.19074c-4.944,6.21125-11.78839,9.25329-20.66189,9.25329-8.493,0-15.71786-3.16887-21.80262-9.63376A33.9841,33.9841,0,0,1,254.703,70.97984a33.67641,33.67641,0,0,1,8.99965-23.70394c6.08476-6.46489,13.30958-9.76025,21.80262-9.76025,8.8735,0,15.71785,3.042,20.66189,9.2533ZM288.54769,88.853A17.00421,17.00421,0,0,0,301.097,83.9093a17.48151,17.48151,0,0,0,5.07019-12.92946c0-5.197-1.648-9.50694-5.07019-12.80263a18.06477,18.06477,0,0,0-25.09864,0A17.39059,17.39059,0,0,0,271.055,70.97984a17.89244,17.89244,0,0,0,4.94337,12.92946A17.00421,17.00421,0,0,0,288.54769,88.853Z"/><path d="M340.391,94.81027A32.59354,32.59354,0,0,1,330.884,70.97984,32.59483,32.59483,0,0,1,340.391,47.14908c6.46456-6.46456,14.45031-9.63343,23.95725-9.63343,12.29568,0,23.197,6.33774,28.394,16.35163l-14.06984,8.2394c-2.53577-5.197-7.98642-8.49271-14.451-8.49271-9.76059,0-16.9854,7.22516-16.9854,17.36587a17.32755,17.32755,0,0,0,4.81654,12.4225,16.52563,16.52563,0,0,0,12.16886,4.81655c6.59138,0,12.042-3.16887,14.57713-8.36588l14.19733,8.11257A32.51017,32.51017,0,0,1,364.34823,104.444C354.84129,104.444,346.85554,101.27516,340.391,94.81027Z"/><path d="M456.8812,102.66953H437.86732L414.79715,73.8954v28.77413h-16.352V13.9382h16.352v53.239l21.80262-27.887h19.52117L430.6425,70.59938Z"/><path d="M505.42981,39.29015h16.352v63.37938h-16.352V95.19074c-4.94337,6.21125-11.7884,9.25329-20.6619,9.25329-8.493,0-15.71785-3.16887-21.80262-9.63376a33.9841,33.9841,0,0,1-8.99965-23.83043,33.67641,33.67641,0,0,1,8.99965-23.70394c6.08477-6.46489,13.30958-9.76025,21.80262-9.76025,8.8735,0,15.71853,3.042,20.6619,9.2533ZM487.81029,88.853a17.00425,17.00425,0,0,0,12.54933-4.9437,17.48155,17.48155,0,0,0,5.07019-12.92946c0-5.197-1.648-9.50694-5.07019-12.80263a18.06479,18.06479,0,0,0-25.09865,0,17.39063,17.39063,0,0,0-4.94337,12.80263A17.89249,17.89249,0,0,0,475.261,83.9093,17.00423,17.00423,0,0,0,487.81029,88.853Z"/><path d="M592.131,47.2759c6.08477,6.4649,9.12648,14.32382,9.12648,23.70394s-3.04171,17.36587-9.12648,23.83043a28.59615,28.59615,0,0,1-21.80262,9.63376c-8.87283,0-15.71785-3.042-20.53507-9.25329v7.47879h-16.352V13.9382h16.352V46.76895c4.81722-6.21125,11.66224-9.2533,20.53507-9.2533A28.71916,28.71916,0,0,1,592.131,47.2759ZM567.286,88.853a17.0021,17.0021,0,0,0,12.54932-4.9437,17.47891,17.47891,0,0,0,5.07019-12.92946c0-5.197-1.64734-9.50694-5.07019-12.80263a18.06395,18.06395,0,0,0-25.098,0,17.38843,17.38843,0,0,0-4.944,12.80263,17.89018,17.89018,0,0,0,4.944,12.92946A17.00161,17.00161,0,0,0,567.286,88.853Z"/><path d="M609.62166,102.66953v-92.534h16.352v92.534Z"/><path d="M651.57822,77.69805c2.1553,7.98575,8.11257,11.91521,17.87315,11.91521,6.21092,0,11.02813-2.15463,14.19734-6.33774l13.18276,7.60529c-6.21159,9-15.46489,13.56322-27.63374,13.56322-10.52085,0-18.88706-3.16887-25.2248-9.50694q-9.50661-9.50659-9.50694-23.95725c0-9.50694,3.1692-17.49269,9.38012-23.83076,6.21091-6.46456,14.32349-9.63343,24.08407-9.63343,9.2533,0,16.98607,3.16887,22.94334,9.63343C696.95829,53.614,700,61.4729,700,70.97984a42.77795,42.77795,0,0,1-.63344,6.71821Zm32.07049-12.67581c-1.90166-8.61953-8.2394-12.80263-15.71853-12.80263-8.746,0-14.70395,4.69006-16.60561,12.80263Z"/><path d="M65.58736.45625,0,66.0433,13.71763,79.76093a16.74846,16.74846,0,0,0,23.68585.00005L65.46831,51.69637,93.53283,79.76088a16.74846,16.74846,0,0,0,23.6859,0l13.83663-13.83663Z"/><circle cx="65.46816" cy="96.40428" r="22.13947"/></svg></div>
+                    <div class="header-workspace" onclick="openWorkspacePicker()">
+                        <span id="current-workspace-analytics">Affordable Family Dental</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
                 </div>
-                <div style="font-size: 15px; color: #71717A; display: flex; align-items: center; gap: 4px; cursor: pointer;">
-                    Jan 2026
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 9l6 6 6-6"/>
+                <div class="header-search-icon" style="visibility: hidden;">
+                    <svg viewBox="0 0 256 256" fill="currentColor" width="24" height="24">
+                        <path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"/>
                     </svg>
                 </div>
             </div>
             
             <div class="screen-content">
-                <div class="page-title">Marketing</div>
+                <div class="page-title">Analytics</div>
                 
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="kpi-label">Budget</div>
-                        <div class="kpi-value">$7,600</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-label">Net Production</div>
-                        <div class="kpi-value">$20,769</div>
-                        <div class="kpi-change">↑ 181%</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-label">Scheduled Prod</div>
-                        <div class="kpi-value">$6,503</div>
-                        <div class="kpi-change">↑ 899%</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-label">ROI</div>
-                        <div class="kpi-value">259%</div>
-                    </div>
-                </div>
-                
-                <div class="funnel-section">
-                    <div class="funnel-title">Conversion Funnel</div>
-                    
-                    <div class="funnel-stage">
-                        <div class="funnel-bar" style="width: 100%;"></div>
-                        <div class="funnel-label">
-                            <span class="funnel-name">Leads</span>
-                            <span class="funnel-value">103</span>
+                <div style="padding: 0 20px;">
+                    <div class="contact-card" onclick="navigateTo('dashboard-marketing')" style="border: 1px solid #E5E7EB; border-radius: 12px; margin-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <div style="width: 44px; height: 44px; background: #DBEAFE; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <svg viewBox="0 0 256 256" fill="#2563EB" width="24" height="24">
+                                    <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                                </svg>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 16px; font-weight: 600; color: #111827;">Marketing Overview</div>
+                                <div style="font-size: 13px; color: #6B7280;">ROI, leads, conversions</div>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
                         </div>
-                        <div class="funnel-cost">$73.79 CPL</div>
                     </div>
                     
-                    <div class="funnel-stage">
-                        <div class="funnel-bar stage-2"></div>
-                        <div class="funnel-label">
-                            <span class="funnel-name">Qualified Leads</span>
-                            <span class="funnel-value">77</span>
+                    <div class="contact-card" onclick="navigateTo('dashboard-patients')" style="border: 1px solid #E5E7EB; border-radius: 12px; margin-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <div style="width: 44px; height: 44px; background: #D1FAE5; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <svg viewBox="0 0 256 256" fill="#059669" width="24" height="24">
+                                    <path d="M125.18,156.94a64,64,0,1,0-82.36,0,100.23,100.23,0,0,0-39.49,32,12,12,0,0,0,19.35,14.2,76,76,0,0,1,122.64,0,12,12,0,0,0,19.36-14.2A100.33,100.33,0,0,0,125.18,156.94ZM44,108a40,40,0,1,1,40,40A40,40,0,0,1,44,108Zm206.1,97.67a12,12,0,0,1-16.78-2.57A76.31,76.31,0,0,0,172,172a12,12,0,0,1,0-24,40,40,0,1,0-14.85-77.16,12,12,0,1,1-8.92-22.28,64,64,0,0,1,55.53,115.51,100.34,100.34,0,0,1,29.78,30.77A12,12,0,0,1,250.1,205.67Z"/>
+                                </svg>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 16px; font-weight: 600; color: #111827;">New Patients</div>
+                                <div style="font-size: 13px; color: #6B7280;">Patient acquisition metrics</div>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
                         </div>
-                        <div class="funnel-cost">$98.70 CPQL</div>
-                    </div>
-                    
-                    <div class="funnel-stage">
-                        <div class="funnel-bar stage-3"></div>
-                        <div class="funnel-label">
-                            <span class="funnel-name">Appointments Scheduled</span>
-                            <span class="funnel-value">65</span>
-                        </div>
-                        <div class="funnel-cost">$116.92 CPA</div>
-                    </div>
-                    
-                    <div class="funnel-stage">
-                        <div class="funnel-bar stage-4"></div>
-                        <div class="funnel-label">
-                            <span class="funnel-name">New Patients</span>
-                            <span class="funnel-value">42</span>
-                        </div>
-                        <div class="funnel-cost">$180.95 CAC</div>
-                    </div>
-                </div>
-                
-                <div class="info-section">
-                    <div class="info-title">Lead Status Breakdown</div>
-                    <div class="info-row">
-                        <span class="info-label">Closed Won</span>
-                        <span class="info-value">42</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Needs Action</span>
-                        <span class="info-value">38</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Scheduled</span>
-                        <span class="info-value">20</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Closed Lost</span>
-                        <span class="info-value">0</span>
                     </div>
                 </div>
             </div>
@@ -2252,15 +2429,334 @@
                     </div>
                     Activities
                 </div>
-                <div class="nav-item" onclick="switchTab('notifications')">
+                <div class="nav-item" onclick="switchTab('tasks')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
-                            <path d="M225.29,165.93C216.61,151,212,129.57,212,104a84,84,0,0,0-168,0c0,25.58-4.61,47-13.29,61.93A20,20,0,0,0,48,196H84.18a44,44,0,0,0,87.64,0H208a20,20,0,0,0,17.29-30.07ZM128,212a20,20,0,0,1-19.6-16h39.2A20,20,0,0,1,128,212ZM54.66,172C63.51,154,68,131.14,68,104a60,60,0,0,1,120,0c0,27.13,4.49,50,13.33,68Z"/>
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
+                        </svg>
+                    </div>
+                    Tasks
+                </div>
+                <div class="nav-item" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
+                </div>
+                <div class="nav-item active" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <circle cx="128" cy="64" r="16"/>
+                            <circle cx="128" cy="128" r="16"/>
+                            <circle cx="128" cy="192" r="16"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- Marketing Dashboard Screen -->
+        <div class="screen" id="screen-dashboard-marketing">
+            <div class="header">
+                <div class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </div>
+                <div style="font-size: 14px; color: #6B7280;">Jan 2026</div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">Marketing</div>
+                <div class="page-subtitle">Overview for January 2026</div>
+                
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">Budget</div>
+                        <div class="kpi-value">$7,600</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Net Production</div>
+                        <div class="kpi-value">$20,769</div>
+                        <div class="kpi-change">▲ 181%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Scheduled Prod</div>
+                        <div class="kpi-value">$6,503</div>
+                        <div class="kpi-change">▲ 899%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">ROI</div>
+                        <div class="kpi-value">259%</div>
+                    </div>
+                </div>
+                
+                <!-- Conversion Funnel -->
+                <div class="funnel-section">
+                    <div class="funnel-title">Conversion Funnel</div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar" style="width: 100%;"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Leads</span>
+                            <span class="funnel-value">103</span>
+                        </div>
+                        <div class="funnel-cost">$73.79 CPL</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-2"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Qualified</span>
+                            <span class="funnel-value">77</span>
+                        </div>
+                        <div class="funnel-cost">$98.70 CPQL</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-3"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Scheduled</span>
+                            <span class="funnel-value">65</span>
+                        </div>
+                        <div class="funnel-cost">$116.92 CPA</div>
+                    </div>
+                    
+                    <div class="funnel-stage">
+                        <div class="funnel-bar stage-4"></div>
+                        <div class="funnel-label">
+                            <span class="funnel-name">Patients</span>
+                            <span class="funnel-value">42</span>
+                        </div>
+                        <div class="funnel-cost">$180.95 CAC</div>
+                    </div>
+                </div>
+                
+                <!-- Lead Status Breakdown -->
+                <div class="info-section">
+                    <div class="info-title">Lead Status</div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <span style="display: inline-block; width: 10px; height: 10px; background: #10B981; border-radius: 2px; margin-right: 8px;"></span>
+                            Closed Won
+                        </span>
+                        <span class="info-value">42</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <span style="display: inline-block; width: 10px; height: 10px; background: #F59E0B; border-radius: 2px; margin-right: 8px;"></span>
+                            Needs Action
+                        </span>
+                        <span class="info-value">38</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <span style="display: inline-block; width: 10px; height: 10px; background: #3B82F6; border-radius: 2px; margin-right: 8px;"></span>
+                            Scheduled
+                        </span>
+                        <span class="info-value">20</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">
+                            <span style="display: inline-block; width: 10px; height: 10px; background: #6B7280; border-radius: 2px; margin-right: 8px;"></span>
+                            In Progress
+                        </span>
+                        <span class="info-value">3</span>
+                    </div>
+                    <div class="info-row" style="border-bottom: none;">
+                        <span class="info-label">
+                            <span style="display: inline-block; width: 10px; height: 10px; background: #EF4444; border-radius: 2px; margin-right: 8px;"></span>
+                            Closed Lost
+                        </span>
+                        <span class="info-value">0</span>
+                    </div>
+                </div>
+                
+                <!-- Schedule Rate -->
+                <div style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 15px; font-weight: 600; color: #111827;">Schedule Rate</span>
+                        <span style="font-size: 15px; font-weight: 700; color: #10B981;">84%</span>
+                    </div>
+                    <div style="height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 84%; height: 100%; background: #10B981; border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M125.18,156.94a64,64,0,1,0-82.36,0,100.23,100.23,0,0,0-39.49,32,12,12,0,0,0,19.35,14.2,76,76,0,0,1,122.64,0,12,12,0,0,0,19.36-14.2A100.33,100.33,0,0,0,125.18,156.94ZM44,108a40,40,0,1,1,40,40A40,40,0,0,1,44,108Zm206.1,97.67a12,12,0,0,1-16.78-2.57A76.31,76.31,0,0,0,172,172a12,12,0,0,1,0-24,40,40,0,1,0-14.85-77.16,12,12,0,1,1-8.92-22.28,64,64,0,0,1,55.53,115.51,100.34,100.34,0,0,1,29.78,30.77A12,12,0,0,1,250.1,205.67Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
+                        </svg>
+                    </div>
+                    Activities
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
                         </svg>
                     </div>
                     Notifications
                 </div>
-                <div class="nav-item active" onclick="switchTab('more')">
+                <div class="nav-item active" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <circle cx="128" cy="64" r="16"/>
+                            <circle cx="128" cy="128" r="16"/>
+                            <circle cx="128" cy="192" r="16"/>
+                        </svg>
+                    </div>
+                    More
+                </div>
+            </div>
+        </div>
+
+        <!-- New Patients Dashboard Screen -->
+        <div class="screen" id="screen-dashboard-patients">
+            <div class="header">
+                <div class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </div>
+                <div style="font-size: 14px; color: #6B7280;">Aug 2025 - Jan 2026</div>
+            </div>
+            
+            <div class="screen-content">
+                <div class="page-title">New Patients</div>
+                <div class="page-subtitle">Last 6 months overview</div>
+                
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">New Patients</div>
+                        <div class="kpi-value">682</div>
+                        <div class="kpi-change">▲ 22%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Reappointment %</div>
+                        <div class="kpi-value">59.0%</div>
+                        <div class="kpi-change">▲ 2%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Scheduled</div>
+                        <div class="kpi-value">0</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Avg Prod/Pt</div>
+                        <div class="kpi-value">$136</div>
+                        <div class="kpi-change">▲ 11%</div>
+                    </div>
+                </div>
+                
+                <!-- Monthly Trend Chart -->
+                <div style="padding: 20px;">
+                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Monthly Trend</div>
+                    <div style="display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB;">
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 85px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Aug</span>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 95px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Sep</span>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 110px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Oct</span>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 120px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Nov</span>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 100px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Dec</span>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="width: 100%; background: #3B82F6; border-radius: 4px 4px 0 0; height: 90px;"></div>
+                            <span style="font-size: 11px; color: #6B7280;">Jan</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- By Channel -->
+                <div class="info-section">
+                    <div class="info-title">By Channel</div>
+                    <div class="info-row">
+                        <span class="info-label">Digital Marketing</span>
+                        <span class="info-value">307</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Referral Marketing</span>
+                        <span class="info-value">247</span>
+                    </div>
+                    <div class="info-row" style="border-bottom: none;">
+                        <span class="info-label">Unknown</span>
+                        <span class="info-value">128</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('contacts')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M125.18,156.94a64,64,0,1,0-82.36,0,100.23,100.23,0,0,0-39.49,32,12,12,0,0,0,19.35,14.2,76,76,0,0,1,122.64,0,12,12,0,0,0,19.36-14.2A100.33,100.33,0,0,0,125.18,156.94ZM44,108a40,40,0,1,1,40,40A40,40,0,0,1,44,108Zm206.1,97.67a12,12,0,0,1-16.78-2.57A76.31,76.31,0,0,0,172,172a12,12,0,0,1,0-24,40,40,0,1,0-14.85-77.16,12,12,0,1,1-8.92-22.28,64,64,0,0,1,55.53,115.51,100.34,100.34,0,0,1,29.78,30.77A12,12,0,0,1,250.1,205.67Z"/>
+                        </svg>
+                    </div>
+                    Contacts
+                </div>
+                <div class="nav-item" onclick="switchTab('activities')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M216,44H40A20,20,0,0,0,20,64V224a19.82,19.82,0,0,0,11.56,18.12,20.14,20.14,0,0,0,8.49,1.88,19.91,19.91,0,0,0,12.82-4.72l.12-.11L84.47,212H216a20,20,0,0,0,20-20V64A20,20,0,0,0,216,44Zm-4,144H80a12,12,0,0,0-7.69,2.8L44,214.25V68H212ZM100,100a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,100Zm0,40a12,12,0,0,1,12-12h32a12,12,0,0,1,0,24H112A12,12,0,0,1,100,140Z"/>
+                        </svg>
+                    </div>
+                    Activities
+                </div>
+                <div class="nav-item" onclick="switchTab('tasks')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Zm-96-56h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34A8,8,0,0,0,34.34,69.66l16,16a8,8,0,0,0,11.32,0l32-32A8,8,0,0,0,82.34,42.34Zm0,64L56,132.69,45.66,122.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Zm0,64L56,196.69,45.66,186.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"/>
+                        </svg>
+                    </div>
+                    Notifications
+                </div>
+                <div class="nav-item active" onclick="switchTab('analytics')">
+                    <div class="nav-icon">
+                        <svg viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>
+                        </svg>
+                    </div>
+                    Analytics
+                </div>
+                <div class="nav-item" onclick="switchTab('more')">
                     <div class="nav-icon">
                         <svg viewBox="0 0 256 256" fill="currentColor">
                             <circle cx="128" cy="64" r="16"/>
@@ -2389,9 +2885,12 @@
                 'contacts': 'contacts',
                 'contact-detail': 'contacts',
                 'contact-detail-simpson': 'contacts',
-                'notifications': 'notifications',
+                'tasks': 'tasks',
+                'notifications': 'more',
+                'analytics': 'analytics',
+                'dashboard-marketing': 'analytics',
+                'dashboard-patients': 'analytics',
                 'more': 'more',
-                'analytics': 'more',
                 'settings': 'more'
             };
             
@@ -2406,8 +2905,9 @@
                 switch(activeTab) {
                     case 'contacts': items[0].classList.add('active'); break;
                     case 'activities': items[1].classList.add('active'); break;
-                    case 'notifications': items[2].classList.add('active'); break;
-                    case 'more': items[3].classList.add('active'); break;
+                    case 'tasks': items[2].classList.add('active'); break;
+                    case 'analytics': items[3].classList.add('active'); break;
+                    case 'more': items[4].classList.add('active'); break;
                 }
             });
         }
@@ -2672,7 +3172,7 @@
             
             // Render results
             if (results.length === 0) {
-                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #A1A1AA;">No contacts found for "${query}"</div>`;
+                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">No contacts found for "${query}"</div>`;
                 return;
             }
             
@@ -2782,13 +3282,13 @@
             if (countsEl) countsEl.textContent = results.length + ' results';
             
             if (results.length === 0) {
-                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #A1A1AA;">No activities found for "${query}"</div>`;
+                container.innerHTML = `<div style="padding: 40px 20px; text-align: center; color: #9CA3AF;">No activities found for "${query}"</div>`;
                 return;
             }
             
             results.forEach(activity => {
                 const iconClass = activity.type === 'Missed Call' ? 'missed' : 'call';
-                const phoneHtml = activity.phone ? `<span style="color: #71717A; font-size: 13px;">${activity.phone}</span>` : '';
+                const phoneHtml = activity.phone ? `<span style="color: #6B7280; font-size: 13px;">${activity.phone}</span>` : '';
                 const audioHtml = activity.hasAudio ? `
                     <div class="audio-player" onclick="event.stopPropagation()">
                         <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>

@@ -3122,16 +3122,30 @@
 
         // Go back
         function goBack() {
+            let prevScreen;
+            
             if (screenHistory.length > 0) {
-                const prevScreen = screenHistory.pop();
-                
-                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-                document.getElementById('screen-' + prevScreen).classList.add('active');
-                
-                currentScreen = prevScreen;
-                window.location.hash = prevScreen;
-                updateNavActive(prevScreen);
+                prevScreen = screenHistory.pop();
+            } else {
+                // Fallback: determine parent screen based on current screen
+                const parentMap = {
+                    'contact-details-section': 'contact-detail-simpson',
+                    'contact-activities-section': 'contact-detail-simpson',
+                    'contact-appointments-section': 'contact-detail-simpson',
+                    'contact-transactions-section': 'contact-detail-simpson',
+                    'contact-detail-simpson': 'contacts',
+                    'activity-detail': 'activities',
+                    'activity-detail-missed': 'activities'
+                };
+                prevScreen = parentMap[currentScreen] || 'contacts';
             }
+            
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + prevScreen).classList.add('active');
+            
+            currentScreen = prevScreen;
+            window.location.hash = prevScreen;
+            updateNavActive(prevScreen);
         }
 
         // Update nav active states
@@ -3144,6 +3158,10 @@
                 'contacts': 'contacts',
                 'contact-detail': 'contacts',
                 'contact-detail-simpson': 'contacts',
+                'contact-details-section': 'contacts',
+                'contact-activities-section': 'contacts',
+                'contact-appointments-section': 'contacts',
+                'contact-transactions-section': 'contacts',
                 'tasks': 'tasks',
                 'notifications': 'more',
                 'analytics': 'analytics',

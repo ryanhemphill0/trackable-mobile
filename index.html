@@ -2988,6 +2988,9 @@
             document.getElementById('screen-' + tab).classList.add('active');
             currentScreen = tab;
             
+            // Update URL hash
+            window.location.hash = tab;
+            
             // Update nav active states
             updateNavActive(tab);
         }
@@ -3006,7 +3009,32 @@
             }, 300);
             
             currentScreen = screen;
+            
+            // Update URL hash
+            window.location.hash = screen;
         }
+        
+        // Restore screen from URL hash on page load
+        function restoreFromHash() {
+            const hash = window.location.hash.slice(1); // Remove #
+            if (hash) {
+                const targetScreen = document.getElementById('screen-' + hash);
+                if (targetScreen) {
+                    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                    targetScreen.classList.add('active');
+                    currentScreen = hash;
+                    
+                    // Update nav for main tabs
+                    const mainTabs = ['contacts', 'activities', 'tasks', 'analytics', 'more', 'notifications'];
+                    if (mainTabs.includes(hash)) {
+                        updateNavActive(hash);
+                    }
+                }
+            }
+        }
+        
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', restoreFromHash);
         
         // Mark notification as read and navigate
         function markReadAndNavigate(element, screen) {
@@ -3034,6 +3062,7 @@
                 document.getElementById('screen-' + prevScreen).classList.add('active');
                 
                 currentScreen = prevScreen;
+                window.location.hash = prevScreen;
                 updateNavActive(prevScreen);
             }
         }

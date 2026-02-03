@@ -1776,6 +1776,15 @@
                     </div>
                 </div>
                 
+                <!-- Tags -->
+                <div style="padding: 0 20px 24px;">
+                    <div style="font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 12px;">Tags</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <span class="tag blue">Missed Call</span>
+                        <span style="color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer;">+ Add</span>
+                    </div>
+                </div>
+                
                 <!-- Details -->
                 <div style="padding: 0 20px 24px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
@@ -1786,9 +1795,12 @@
                         <span style="font-size: 15px; color: #6B7280;">Lifecycle</span>
                         <span style="font-size: 15px; font-weight: 600; color: #059669;">Lead</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #F3F4F6;">
+                    <div style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #F3F4F6; cursor: pointer;" onclick="openLeadStatusPicker()">
                         <span style="font-size: 15px; color: #6B7280;">Lead Status</span>
-                        <span style="font-size: 15px; font-weight: 600; color: #111827;">Needs Action</span>
+                        <span style="display: flex; align-items: center; gap: 6px;">
+                            <span id="lead-status-value" style="font-size: 15px; font-weight: 600; color: #111827;">Needs Action</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" width="16" height="16"><path d="M6 9l6 6 6-6"/></svg>
+                        </span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #F3F4F6;">
                         <span style="font-size: 15px; color: #6B7280;">Lead Owner</span>
@@ -1804,31 +1816,8 @@
                     </div>
                 </div>
                 
-                <!-- Tags -->
-                <div style="padding: 0 20px 24px;">
-                    <div style="font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 12px;">Tags</div>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-                        <span class="tag blue">Missed Call</span>
-                        <span style="color: #3B82F6; font-size: 14px; font-weight: 500; cursor: pointer;">+ Add</span>
-                    </div>
-                </div>
-                
                 <!-- Section Cards -->
                 <div style="padding: 0 20px 20px;">
-                    <!-- Details Card -->
-                    <div class="menu-item" onclick="navigateTo('contact-details-section')">
-                        <div class="menu-icon">
-                            <svg viewBox="0 0 256 256" fill="currentColor">
-                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/>
-                            </svg>
-                        </div>
-                        <div class="menu-text">
-                            <div class="menu-title">Details</div>
-                            <div class="menu-desc">Lifecycle, contact info, custom fields</div>
-                        </div>
-                        <span class="menu-arrow">›</span>
-                    </div>
-                    
                     <!-- Activities Card -->
                     <div class="menu-item" onclick="navigateTo('contact-activities-section')">
                         <div class="menu-icon">
@@ -2817,6 +2806,34 @@
             </div>
         </div>
 
+        <!-- Lead Status Picker Modal -->
+        <div class="modal-overlay" id="lead-status-modal" onclick="closeLeadStatusPicker(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span class="modal-title">Lead Status</span>
+                    <span class="modal-close" onclick="closeLeadStatusPicker()">&times;</span>
+                </div>
+                <div style="padding: 8px 0;">
+                    <div class="workspace-item" onclick="selectLeadStatus('Needs Action')">
+                        <span class="workspace-name">Needs Action</span>
+                        <span class="workspace-check" id="status-check-needs-action">✓</span>
+                    </div>
+                    <div class="workspace-item" onclick="selectLeadStatus('In Progress')">
+                        <span class="workspace-name">In Progress</span>
+                        <span class="workspace-check" id="status-check-in-progress"></span>
+                    </div>
+                    <div class="workspace-item" onclick="selectLeadStatus('Scheduled')">
+                        <span class="workspace-name">Scheduled</span>
+                        <span class="workspace-check" id="status-check-scheduled"></span>
+                    </div>
+                    <div class="workspace-item" onclick="selectLeadStatus('Closed Lost')">
+                        <span class="workspace-name">Closed Lost</span>
+                        <span class="workspace-check" id="status-check-closed-lost"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Contact Details Section Screen -->
         <div class="screen" id="screen-contact-details-section">
             <div class="header">
@@ -3192,6 +3209,41 @@
             });
             
             closeWorkspacePicker();
+        }
+        
+        // Lead Status Picker
+        let currentLeadStatus = 'Needs Action';
+        
+        function openLeadStatusPicker() {
+            document.getElementById('lead-status-modal').classList.add('active');
+        }
+        
+        function closeLeadStatusPicker(event) {
+            if (!event || event.target.id === 'lead-status-modal') {
+                document.getElementById('lead-status-modal').classList.remove('active');
+            }
+        }
+        
+        function selectLeadStatus(status) {
+            currentLeadStatus = status;
+            document.getElementById('lead-status-value').textContent = status;
+            
+            // Update checkmarks
+            const statusMap = {
+                'Needs Action': 'needs-action',
+                'In Progress': 'in-progress',
+                'Scheduled': 'scheduled',
+                'Closed Lost': 'closed-lost'
+            };
+            
+            Object.keys(statusMap).forEach(s => {
+                const checkEl = document.getElementById('status-check-' + statusMap[s]);
+                if (checkEl) {
+                    checkEl.textContent = (s === status) ? '✓' : '';
+                }
+            });
+            
+            closeLeadStatusPicker();
         }
 
         // Contact data for each view

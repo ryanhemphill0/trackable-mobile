@@ -599,14 +599,14 @@
         }
         
         .avatar {
-            width: 24px;
-            height: 24px;
+            width: 18px;
+            height: 18px;
             background: #DBEAFE;
-            border-radius: 6px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: #2563EB;
             flex-shrink: 0;
@@ -3100,14 +3100,16 @@
                             <div class="contact-header">
                                 <div class="contact-type">
                                     <div class="avatar">${contact.initial}</div>
-                                    <div class="contact-name">${contact.name}</div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">${contact.name}</div>
+                                        <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                    </div>
                                 </div>
                                 <div class="contact-datetime">
                                     <div class="contact-time">${contact.time}</div>
                                     <div class="contact-date">${contact.date}</div>
                                 </div>
                             </div>
-                            <div class="contact-lifecycle">${contact.lifecycle}</div>
                             ${tagHtml}
                         </div>
                     `;
@@ -3194,14 +3196,16 @@
                         <div class="contact-header">
                             <div class="contact-type">
                                 <div class="avatar">${contact.initial}</div>
-                                <div class="contact-name">${contact.name}</div>
+                                <div class="contact-info">
+                                    <div class="contact-name">${contact.name}</div>
+                                    <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                </div>
                             </div>
                             <div class="contact-datetime">
                                 <div class="contact-time">${contact.time}</div>
                                 <div class="contact-date">${contact.date}</div>
                             </div>
                         </div>
-                        <div class="contact-lifecycle">${contact.lifecycle}</div>
                         ${tagHtml}
                     </div>
                 `;

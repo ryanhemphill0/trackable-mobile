@@ -642,6 +642,11 @@
             margin-top: 2px;
         }
         
+        .contact-info-stack {
+            display: flex;
+            flex-direction: column;
+        }
+        
         .contact-meta {
             display: flex;
             align-items: center;
@@ -3100,14 +3105,16 @@
                             <div class="contact-header">
                                 <div class="contact-type">
                                     <div class="avatar">${contact.initial}</div>
-                                    <div class="contact-name">${contact.name}</div>
+                                    <div class="contact-info-stack">
+                                        <div class="contact-name">${contact.name}</div>
+                                        <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                    </div>
                                 </div>
                                 <div class="contact-datetime">
                                     <div class="contact-time">${contact.time}</div>
                                     <div class="contact-date">${contact.date}</div>
                                 </div>
                             </div>
-                            <div class="contact-lifecycle">${contact.lifecycle}</div>
                             ${tagHtml}
                         </div>
                     `;
@@ -3194,14 +3201,16 @@
                         <div class="contact-header">
                             <div class="contact-type">
                                 <div class="avatar">${contact.initial}</div>
-                                <div class="contact-name">${contact.name}</div>
+                                <div class="contact-info-stack">
+                                    <div class="contact-name">${contact.name}</div>
+                                    <div class="contact-lifecycle">${contact.lifecycle}</div>
+                                </div>
                             </div>
                             <div class="contact-datetime">
                                 <div class="contact-time">${contact.time}</div>
                                 <div class="contact-date">${contact.date}</div>
                             </div>
                         </div>
-                        <div class="contact-lifecycle">${contact.lifecycle}</div>
                         ${tagHtml}
                     </div>
                 `;
